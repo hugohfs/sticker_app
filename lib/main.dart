@@ -6,53 +6,6 @@ import 'package:sticker_app/pages/panel.dart';
 
 
 void main() => runApp(MyApp());
-//void main() => runApp(MyAppLista());
-
-class MyAppLista extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final title = 'Horizontal List';
-
-    return MaterialApp(
-      title: title,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: Container(
-          margin: EdgeInsets.symmetric(vertical: 200.0),
-          height: 200.0,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                width: 160.0,
-                color: Colors.purple,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.blue,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.green,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.yellow,
-              ),
-              Container(
-                width: 160.0,
-                color: Colors.orange,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -105,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _showCurrentTab(int _selectedIndex) {
     switch (_selectedIndex) {
       case 0:
-        return OpenFoodFactsPage();
+        return PanelPage();
         //return _showHomeBody();
         break;
       case 1:

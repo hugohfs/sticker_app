@@ -8,9 +8,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     as font_awesome_flutter;
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
+import 'package:sticker_app/pages/producto.dart';
 
-class OpenFoodFactsPage extends StatefulWidget {
-  /*OpenFoodFactsPage({Key key, this.auth, this.userId, this.onSignedOut})
+class PanelPage extends StatefulWidget {
+  /*PanelPage({Key key, this.auth, this.userId, this.onSignedOut})
       : super(key: key);
 
   final BaseAuth auth;
@@ -18,10 +19,10 @@ class OpenFoodFactsPage extends StatefulWidget {
   final String userId;*/
 
   @override
-  State<StatefulWidget> createState() => new _OpenFoodFactsPageState();
+  State<StatefulWidget> createState() => new _PanelPageState();
 }
 
-class _OpenFoodFactsPageState extends State<OpenFoodFactsPage> {
+class _PanelPageState extends State<PanelPage> {
   String _textMessage;
   Future<OffObject> _offObject;
 
@@ -190,7 +191,7 @@ class _OpenFoodFactsPageState extends State<OpenFoodFactsPage> {
             child: Container(
                 child: GridView.count(
           crossAxisCount: 3,
-          //physics: ScrollPhysics(), // to disable GridView's scrolling
+          physics: ScrollPhysics(), // to disable GridView's scrolling
           shrinkWrap: true,
           children: <Widget>[
             Container(
@@ -259,6 +260,8 @@ class _OpenFoodFactsPageState extends State<OpenFoodFactsPage> {
                     //onPressed: _validateAndSubmit,
                     onPressed: () {
                       _scanQR();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ProductoPage(offObject: _offObject)));
                     })),
           ],
         ));
