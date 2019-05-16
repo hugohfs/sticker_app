@@ -250,16 +250,19 @@ class _PanelPageState extends State<PanelPage> {
                       Icons.search,
                       color: Colors.green,
                     ),
-                    //onPressed: _validateAndSubmit)),
                     onPressed: () {
-                      _validateAndSubmit();
-                      _offObject.then((value){
-                        setState(() {
-                          _offObjectCaptured = value;
+                      var res = _validateAndSubmit();
+                      res.then((value) {
+                        _offObject.then((value) {
+                          setState(() {
+                            _offObjectCaptured = value;
+                          });
+
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  ProductoPage(offObject: _offObjectCaptured)));
                         });
                       });
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
                     })),
             Container(
                 width: 50.0,
@@ -270,14 +273,18 @@ class _PanelPageState extends State<PanelPage> {
                     ),
                     //onPressed: _validateAndSubmit,
                     onPressed: () {
-                      _scanQR();
-                      _offObject.then((value){
-                        setState(() {
-                          _offObjectCaptured = value;
+                      var res = _scanQR();
+                      res.then((value) {
+                        _offObject.then((value) {
+                          setState(() {
+                            _offObjectCaptured = value;
+                          });
+
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  ProductoPage(offObject: _offObjectCaptured)));
                         });
                       });
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
                     })),
           ],
         ));
@@ -299,13 +306,15 @@ class _PanelPageState extends State<PanelPage> {
     );
   }
 
-  void _validateAndSubmit() async {
+  Future<String> _validateAndSubmit() async {
     setState(() {
       _errorMessage = "";
     });
     if (_validateAndSave()) {
       try {
         _getDataFromAPI();
+
+        return 'OK';
       } catch (e) {
         print('Error: $e');
         setState(() {
@@ -446,11 +455,13 @@ class _PanelPageState extends State<PanelPage> {
     ]);
   }
 
-  _getDataFromAPI() {
+  Future<String> _getDataFromAPI() async {
     setState(() {
       _offObject = _fetchOffObject();
       _textMessage = null;
     });
+
+    return 'OK';
   }
 
   Future<OffObject> _fetchOffObject() async {
@@ -488,7 +499,7 @@ class _PanelPageState extends State<PanelPage> {
     }
   }
 
-  Future _scanQR() async {
+  Future<String> _scanQR() async {
     print('_scanQR');
     try {
       String qrResult = await BarcodeScanner.scan();
