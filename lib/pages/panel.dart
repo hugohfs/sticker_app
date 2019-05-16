@@ -25,6 +25,7 @@ class PanelPage extends StatefulWidget {
 class _PanelPageState extends State<PanelPage> {
   String _textMessage;
   Future<OffObject> _offObject;
+  OffObject _offObjectCaptured;
 
   String _barcode;
   final _baseUrl = 'https://world.openfoodfacts.org/api/v0/product/';
@@ -249,7 +250,17 @@ class _PanelPageState extends State<PanelPage> {
                       Icons.search,
                       color: Colors.green,
                     ),
-                    onPressed: _validateAndSubmit)),
+                    //onPressed: _validateAndSubmit)),
+                    onPressed: () {
+                      _validateAndSubmit();
+                      _offObject.then((value){
+                        setState(() {
+                          _offObjectCaptured = value;
+                        });
+                      });
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
+                    })),
             Container(
                 width: 50.0,
                 child: FlatButton(
@@ -260,8 +271,13 @@ class _PanelPageState extends State<PanelPage> {
                     //onPressed: _validateAndSubmit,
                     onPressed: () {
                       _scanQR();
+                      _offObject.then((value){
+                        setState(() {
+                          _offObjectCaptured = value;
+                        });
+                      });
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ProductoPage(offObject: _offObject)));
+                          builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
                     })),
           ],
         ));

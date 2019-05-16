@@ -7,7 +7,9 @@ final String tabPanelName = "Panel";
 final String tabStickersName = "Stickers";
 final String tabPerfilName = "Perfil";
 
-final PANEL_HISTORIAL = "Historial";
-final PANEL_SUGERENCIAS = "Sugerencias";
-final PANEL_STICKERS = "Stickers";
+final String PANEL_HISTORIAL = "Historial";
+final String PANEL_SUGERENCIAS = "Sugerencias";
+final String PANEL_STICKERS = "Stickers";
+
+final String APPBAR_PRODUCTO = "Producto";
 
