@@ -35,8 +35,8 @@ class _ProductoPageState extends State<ProductoPage> {
           body: TabBarView(
             children: [
               _showProductResult(),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
+              Icon(Icons.playlist_add_check),
+              Icon(Icons.info),
             ],
           ),
         ),

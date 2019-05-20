@@ -61,7 +61,7 @@ class _StickersPageState extends State<StickersPage> {
 
   Widget _showUserStickersHeader() {
     return Container(
-        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -207,7 +207,7 @@ class _StickersPageState extends State<StickersPage> {
 
   Widget _showSuggestedStickersHeader() {
     return Container(
-        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
