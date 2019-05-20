@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'
-as font_awesome_flutter;
 import 'package:sticker_app/pages/panel.dart';
+import 'package:sticker_app/pages/stickers.dart';
 
 
 void main() => runApp(MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Sticker App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: MyHomePage(title: 'Sticker App Home Page'),
     );
@@ -59,14 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (_selectedIndex) {
       case 0:
         return PanelPage();
-        //return _showHomeBody();
         break;
       case 1:
-        return Text(
-            'Index 1: Stickers',
-            style: optionStyle,
-        );
-        //return StartupNameGenerator();
+        return StickersPage();
         break;
       case 2:
         return Text(

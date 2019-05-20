@@ -13,3 +13,9 @@ final String PANEL_STICKERS = "Stickers";
 
 final String APPBAR_PRODUCTO = "Producto";
 
+final String STICKERS_SUGERENCIAS = "Sugerencias";
+final String STICKERS_STICKERS_USUARIO = "Tus Stickers";
+
+final String PRODUCTO_TAB_PRODUCTO = "Producto";
+final String PRODUCTO_TAB_COMPOSICION = "Composición";
+final String PRODUCTO_TAB_INFORMACION = "Información";

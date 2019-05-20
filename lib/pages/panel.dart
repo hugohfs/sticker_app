@@ -47,23 +47,20 @@ class _PanelPageState extends State<PanelPage> {
             label: Text("Scan")
         ),*/
         body: new Container(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
             child: new Form(
               key: _formKey,
               child: new ListView(
                 shrinkWrap: true,
                 children: <Widget>[
-                  //_showButtonGetFromLocalFile(),
                   _showSearchInputAndButtons(),
-                  //_showButtonGetFromAPI(),
+                  _showErrorMessage(),
                   _showHistoryHeader(),
                   _showHistoryProducts(),
                   _showSuggestedHeader(),
                   _showSuggestedProducts(),
                   _showStickersHeader(),
                   _showUserStickers(),
-                  _showErrorMessage(),
-                  _showTextResult(),
                 ],
               ),
             )));
@@ -71,7 +68,7 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showHistoryHeader() {
     return Container(
-        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -90,28 +87,28 @@ class _PanelPageState extends State<PanelPage> {
           child: Container(
         //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
         //margin: EdgeInsets.symmetric(vertical: 10.0),
-        height: 85.0,
+        height: 60.0,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-              width: 85.0,
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+              width: 60.0,
               color: Colors.purple,
             ),
             Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-              width: 85.0,
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+              width: 60.0,
               color: Colors.blue,
             ),
             Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-              width: 85.0,
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+              width: 60.0,
               color: Colors.green,
             ),
             Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-              width: 85.0,
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+              width: 60.0,
               color: Colors.yellow,
             ),
           ],
@@ -122,7 +119,7 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showSuggestedHeader() {
     return Container(
-        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -141,30 +138,30 @@ class _PanelPageState extends State<PanelPage> {
           child: Container(
         //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
         //margin: EdgeInsets.symmetric(vertical: 10.0),
-        height: 85.0,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-              width: 85.0,
-              color: Colors.purple,
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-              width: 85.0,
-              color: Colors.blue,
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-              width: 85.0,
-              color: Colors.green,
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-              width: 85.0,
-              color: Colors.yellow,
-            ),
+            height: 60.0,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+                  width: 60.0,
+                  color: Colors.purple,
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+                  width: 60.0,
+                  color: Colors.blue,
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+                  width: 60.0,
+                  color: Colors.green,
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+                  width: 60.0,
+                  color: Colors.yellow,
+                ),
           ],
         ),
       )),
@@ -173,7 +170,7 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showStickersHeader() {
     return Container(
-        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -187,36 +184,92 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showUserStickers() {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
         child: Center(
             child: Container(
+                /*child: GridView.custom(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3), shrinkWrap: true, physics: ScrollPhysics(), // to disable GridView's scrolling
+                    childrenDelegate:
+                    SliverChildListDelegate(List.generate(4, (index) {
+                      return Container(
+                        padding: EdgeInsets.all(20.0),
+                        child: Center(
+                          child: GridTile(
+                            /*footer: Text(
+                              'Item $index',
+                              textAlign: TextAlign.center,
+                            ),
+                            header: Text(
+                              'SubItem $index',
+                              textAlign: TextAlign.center,
+                            ),*/
+                            child: Icon(Icons.bookmark,
+                                size: 75.0, color: Colors.green),
+                          ),
+                        ),
+                        color: Colors.blue[400],
+                        margin: EdgeInsets.all(1.0),
+                      );
+                    }))),*/
                 child: GridView.count(
           crossAxisCount: 3,
           physics: ScrollPhysics(), // to disable GridView's scrolling
           shrinkWrap: true,
           children: <Widget>[
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 10.0),
-              width: 100.0,
-              color: Colors.purple,
+            IconButton(
+                iconSize: 100,
+                icon: Icon(
+                    Icons.bookmark,
+                    //size: 100.0,
+                    color: Colors.purple)
             ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 10.0),
-              width: 100.0,
-              color: Colors.blue,
+            IconButton(
+                iconSize: 100,
+                icon: Icon(
+                    Icons.bookmark,
+                    //size: 100.0,
+                    color: Colors.blue)
             ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 10.0),
-              width: 100.0,
-              color: Colors.green,
+            IconButton(
+                iconSize: 100,
+                icon: Icon(
+                    Icons.bookmark,
+                    //size: 100.0,
+                    color: Colors.green)
             ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 10.0),
-              width: 100.0,
-              color: Colors.yellow,
+            IconButton(
+                iconSize: 100,
+                icon: Icon(
+                    Icons.bookmark,
+                    //size: 100.0,
+                    color: Colors.yellow)
             ),
+            /*FlatButton(
+              padding: const EdgeInsets.all(0.0),
+            child: Icon(
+              Icons.bookmark,
+              size: 100.0,
+              color: Colors.purple)
+            ),
+            FlatButton(child: Icon(
+              Icons.bookmark,
+              size: 100.0,
+              color: Colors.blue)
+            ),
+            FlatButton(child: Icon(
+                Icons.bookmark,
+                size: 100.0,
+                color: Colors.green)
+            ),
+            FlatButton(child: Icon(
+                Icons.bookmark,
+                size: 100.0,
+                color: Colors.yellow)
+            ),*/
           ],
-        ))));
+        )
+        )));
   }
 
   Widget _showSearchInputAndButtons() {
@@ -290,22 +343,6 @@ class _PanelPageState extends State<PanelPage> {
         ));
   }
 
-  Widget _showButtonGetFromAPI() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-      child: Center(
-          child: RaisedButton(
-        elevation: 5.0,
-        shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(30.0)),
-        color: Colors.blue,
-        child: Text('Get data from Open Food Facts API',
-            style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-        onPressed: _validateAndSubmit,
-      )),
-    );
-  }
-
   Future<String> _validateAndSubmit() async {
     setState(() {
       _errorMessage = "";
@@ -332,127 +369,6 @@ class _PanelPageState extends State<PanelPage> {
       return true;
     }
     return false;
-  }
-
-  Widget _showTextResult() {
-    if (_offObject != null) {
-      return Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-          child: FutureBuilder<OffObject>(
-            future: _offObject,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return _showProductInfo(snapshot);
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-
-              // By default, show a loading spinner
-              return CircularProgressIndicator();
-            },
-          ));
-    } else if (_textMessage != null && _textMessage.length > 0) {
-      return Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-          child: new Text(
-            _textMessage,
-            style: TextStyle(
-                fontSize: 13.0,
-                color: Colors.black,
-                height: 1.0,
-                fontWeight: FontWeight.w400),
-          ));
-    } else {
-      return new Container(
-        height: 0.0,
-      );
-    }
-  }
-
-  Column _showProductInfo(AsyncSnapshot<OffObject> snapshot) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
-        Widget>[
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-          child: Wrap(children: <Widget>[
-            (snapshot.data.product != null &&
-                    snapshot.data.product.imageFrontSmallUrl != null)
-                ? Image.network(snapshot.data.product.imageFrontSmallUrl)
-                : Image.asset('assets/not_found.png')
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Creator: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((snapshot.data.product != null &&
-                    snapshot.data.product.creator != null)
-                ? snapshot.data.product.creator.toString()
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Generic Name: ",
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((snapshot.data.product != null &&
-                    snapshot.data.product.genericName != null)
-                ? snapshot.data.product.genericName
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Product Name: ",
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((snapshot.data.product != null &&
-                    snapshot.data.product.productName != null)
-                ? snapshot.data.product.productName
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Ingredients text: ",
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((snapshot.data.product != null &&
-                    snapshot.data.product.ingredientsText != null)
-                ? snapshot.data.product.ingredientsText
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Nutriscore: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            (snapshot.data.product != null &&
-                    snapshot.data.product.nutritionGrades != null)
-                ? snapshot.data.product.nutritionGrades == 'a'
-                    ? Image.asset('assets/nutriscore-a.png')
-                    : snapshot.data.product.nutritionGrades == 'b'
-                        ? Image.asset('assets/nutriscore-b.png')
-                        : snapshot.data.product.nutritionGrades == 'c'
-                            ? Image.asset('assets/nutriscore-c.png')
-                            : snapshot.data.product.nutritionGrades == 'd'
-                                ? Image.asset('assets/nutriscore-d.png')
-                                : snapshot.data.product.nutritionGrades == 'e'
-                                    ? Image.asset('assets/nutriscore-e.png')
-                                    : Image.asset('assets/not_found.png')
-                : (snapshot.data.product != null &&
-                        snapshot.data.product.nutritionGradeFr != null)
-                    ? snapshot.data.product.nutritionGradeFr == 'a'
-                        ? Image.asset('assets/nutriscore-a.png')
-                        : snapshot.data.product.nutritionGradeFr == 'b'
-                            ? Image.asset('assets/nutriscore-b.png')
-                            : snapshot.data.product.nutritionGradeFr == 'c'
-                                ? Image.asset('assets/nutriscore-c.png')
-                                : snapshot.data.product.nutritionGradeFr == 'd'
-                                    ? Image.asset('assets/nutriscore-d.png')
-                                    : snapshot.data.product.nutritionGradeFr ==
-                                            'e'
-                                        ? Image.asset('assets/nutriscore-e.png')
-                                        : Image.asset('assets/not_found.png')
-                    : Image.asset('assets/not_found.png')
-          ])),
-    ]);
   }
 
   Future<String> _getDataFromAPI() async {
@@ -530,55 +446,4 @@ class _PanelPageState extends State<PanelPage> {
     }
   }
 
-  Widget _showButtonGetFromLocalFile() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-      child: Center(
-          child: RaisedButton(
-        elevation: 5.0,
-        shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(30.0)),
-        color: Colors.blue,
-        child: Text('Get data from Local File',
-            style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-        onPressed: () {
-          _getDataFromFile(context);
-        },
-      )),
-    );
-  }
-
-  _getDataFromFile(BuildContext context) async {
-    // WAY 1
-    String jsonString = "";
-    jsonString = await DefaultAssetBundle.of(context)
-        .loadString("assets/Open_Food_Facts_JSON_Example_HFS.json");
-    //print("jsonString:" + jsonString);
-
-    Map userMap = jsonDecode(jsonString);
-    var model = OffObject.fromJson(userMap);
-    //print(model.product.genericNameFr);
-
-    // WAY 2
-    Map<String, dynamic> dmap = await DefaultAssetBundle.of(context)
-        .loadString("assets/Open_Food_Facts_JSON_Example_HFS.json")
-        .then((jsonStr) => jsonDecode(jsonStr));
-    //print(dmap);
-
-    OffObject offModel = new OffObject.fromJson(dmap);
-    //print(offModel.product.genericNameFr);
-
-    setState(() {
-      _textMessage = "genericName: " +
-          model.product.genericName +
-          "\n\n" +
-          "ingredientsText: " +
-          model.product.ingredientsText +
-          "\n\n" +
-          "nutriments: " +
-          model.product.nutriments.toString();
-      //_textMessage = offModel.product.nutriments.toString();
-      _offObject = null;
-    });
-  }
 }

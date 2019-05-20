@@ -18,19 +18,30 @@ class _ProductoPageState extends State<ProductoPage> {
   String _errorMessage;
 
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: AppBar(title: Text(g.APPBAR_PRODUCTO)),
-        body: new Container(
-            padding: EdgeInsets.all(15.0),
-            child: new Form(
-              child: new ListView(
-                shrinkWrap: true,
-                children: <Widget>[
-                  _showErrorMessage(),
-                  _showTextResult(),
-                ],
-              ),
-            )));
+    return Scaffold(
+      body: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
+                Tab(text: g.PRODUCTO_TAB_PRODUCTO, icon: Icon(Icons.fastfood)),
+                Tab(text: g.PRODUCTO_TAB_COMPOSICION, icon: Icon(Icons.playlist_add_check)),
+                Tab(text: g.PRODUCTO_TAB_INFORMACION, icon: Icon(Icons.info)),
+              ],
+            ),
+            title: Text(g.APPBAR_PRODUCTO),
+          ),
+          body: TabBarView(
+            children: [
+              _showProductResult(),
+              Icon(Icons.directions_transit),
+              Icon(Icons.directions_bike),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _showErrorMessage() {
@@ -50,7 +61,7 @@ class _ProductoPageState extends State<ProductoPage> {
     }
   }
 
-  Widget _showTextResult() {
+  Widget _showProductResult() {
     if (widget.offObject != null) {
       return Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
