@@ -462,7 +462,7 @@ class _PanelPageState extends State<PanelPage> {
   Future<OffObject> _fetchOffObject() async {
     //_barcode = '8412042502381'; // MORDARIZ 330 Ml
     //_barcode = '8411620001155'; // El Caserio
-    _barcode = '8413993070103'; // ensaladilla
+    //_barcode = '8413993070103'; // ensaladilla
     final url = _baseUrl + _barcode + _baseUrlEnd;
     print(url);
 
