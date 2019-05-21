@@ -68,7 +68,7 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showHistoryHeader() {
     return Container(
-        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -82,34 +82,58 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showHistoryProducts() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
       child: Center(
           child: Container(
         //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
-        //margin: EdgeInsets.symmetric(vertical: 10.0),
-        height: 60.0,
-        child: ListView(
+        height: 65.0,
+        child: /*Wrap(*/
+          ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-              width: 60.0,
-              color: Colors.purple,
+              width: 65.0,
+              //color: Colors.orange,
+              child: IconButton(
+                  iconSize: 65.0,
+                  icon: Icon(
+                      Icons.image,
+                      color: Colors.purple)
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-              width: 60.0,
-              color: Colors.blue,
+              width: 65.0,
+              //color: Colors.blue,
+              child: IconButton(
+                iconSize: 65.0,
+                icon: Icon(
+                    Icons.image,
+                    color: Colors.blue)
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-              width: 60.0,
-              color: Colors.green,
+              width: 65.0,
+              //color: Colors.green,
+              child: IconButton(
+                  iconSize: 65.0,
+                  icon: Icon(
+                      Icons.image,
+                      color: Colors.green)
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-              width: 60.0,
-              color: Colors.yellow,
+              width: 65.0,
+              //color: Colors.yellow,
+              child: IconButton(
+                  iconSize: 65.0,
+                  icon: Icon(
+                      Icons.image,
+                      color: Colors.yellow)
+              ),
             ),
           ],
         ),
@@ -119,7 +143,7 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showSuggestedHeader() {
     return Container(
-        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -133,35 +157,60 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showSuggestedProducts() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
       child: Center(
           child: Container(
         //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
         //margin: EdgeInsets.symmetric(vertical: 10.0),
-            height: 60.0,
-            child: ListView(
+            height: 65.0,
+            child: /*Wrap*/
+              ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-                  width: 60.0,
-                  color: Colors.purple,
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-                  width: 60.0,
-                  color: Colors.blue,
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-                  width: 60.0,
-                  color: Colors.green,
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-                  width: 60.0,
-                  color: Colors.yellow,
-                ),
+            Container(
+            margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+            width: 65.0,
+            //color: Colors.purple,
+            child: IconButton(
+                iconSize: 65.0,
+                icon: Icon(
+                    Icons.image,
+                    color: Colors.purple)
+            ),
+          ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+          width: 65.0,
+          //color: Colors.blue,
+          child: IconButton(
+              iconSize: 65.0,
+              icon: Icon(
+                  Icons.image,
+                  color: Colors.blue)
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+          width: 65.0,
+          //color: Colors.green,
+          child: IconButton(
+              iconSize: 65.0,
+              icon: Icon(
+                  Icons.image,
+                  color: Colors.green)
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+          width: 65.0,
+          //color: Colors.yellow,
+          child: IconButton(
+              iconSize: 65.0,
+              icon: Icon(
+                  Icons.image,
+                  color: Colors.yellow)
+          ),
+        )
           ],
         ),
       )),
@@ -170,7 +219,7 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showStickersHeader() {
     return Container(
-        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -212,39 +261,69 @@ class _PanelPageState extends State<PanelPage> {
                         margin: EdgeInsets.all(1.0),
                       );
                     }))),*/
-                child: GridView.count(
+                child: Wrap(children: <Widget>[
+                    IconButton(
+                    iconSize: 85.0,
+                    icon: Icon(
+                        Icons.bookmark,
+                        //size: 100.0,
+                        color: Colors.purple)
+                ),
+              IconButton(
+                  iconSize: 85.0,
+                  icon: Icon(
+                      Icons.bookmark,
+                      //size: 100.0,
+                      color: Colors.blue)
+              ),
+              IconButton(
+                  iconSize: 85.0,
+                  icon: Icon(
+                      Icons.bookmark,
+                      //size: 100.0,
+                      color: Colors.green)
+              ),
+              IconButton(
+                  iconSize: 85.0,
+                  icon: Icon(
+                      Icons.bookmark,
+                      //size: 100.0,
+                      color: Colors.yellow)
+              ),
+              ]
+                /*child: GridView.count(
           crossAxisCount: 3,
           physics: ScrollPhysics(), // to disable GridView's scrolling
           shrinkWrap: true,
           children: <Widget>[
             IconButton(
-                iconSize: 100,
+                iconSize: 75.0,
                 icon: Icon(
                     Icons.bookmark,
                     //size: 100.0,
                     color: Colors.purple)
             ),
             IconButton(
-                iconSize: 100,
+                iconSize: 75.0,
                 icon: Icon(
                     Icons.bookmark,
                     //size: 100.0,
                     color: Colors.blue)
             ),
             IconButton(
-                iconSize: 100,
+                iconSize: 75.0,
                 icon: Icon(
                     Icons.bookmark,
                     //size: 100.0,
                     color: Colors.green)
             ),
             IconButton(
-                iconSize: 100,
+                iconSize: 75.0,
                 icon: Icon(
                     Icons.bookmark,
                     //size: 100.0,
                     color: Colors.yellow)
-            ),
+            ),*/
             /*FlatButton(
               padding: const EdgeInsets.all(0.0),
             child: Icon(
@@ -267,7 +346,7 @@ class _PanelPageState extends State<PanelPage> {
                 size: 100.0,
                 color: Colors.yellow)
             ),*/
-          ],
+          //],
         )
         )));
   }
@@ -383,7 +462,7 @@ class _PanelPageState extends State<PanelPage> {
   Future<OffObject> _fetchOffObject() async {
     //_barcode = '8412042502381'; // MORDARIZ 330 Ml
     //_barcode = '8411620001155'; // El Caserio
-    //_barcode = '8413993070103'; // ensaladilla
+    _barcode = '8413993070103'; // ensaladilla
     final url = _baseUrl + _barcode + _baseUrlEnd;
     print(url);
 

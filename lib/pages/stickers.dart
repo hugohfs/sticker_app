@@ -76,34 +76,64 @@ class _StickersPageState extends State<StickersPage> {
   Widget _showUserStickers() {
     return Center(
             child: Container(
-                child: GridView.count(
+                child: Wrap(children: <Widget>[
+                  IconButton(
+                      iconSize: 85.0,
+                      icon: Icon(
+                          Icons.bookmark,
+                          //size: 100.0,
+                          color: Colors.purple)
+                  ),
+                  IconButton(
+                      iconSize: 85.0,
+                      icon: Icon(
+                          Icons.bookmark,
+                          //size: 100.0,
+                          color: Colors.blue)
+                  ),
+                  IconButton(
+                      iconSize: 85.0,
+                      icon: Icon(
+                          Icons.bookmark,
+                          //size: 100.0,
+                          color: Colors.green)
+                  ),
+                  IconButton(
+                      iconSize: 85.0,
+                      icon: Icon(
+                          Icons.bookmark,
+                          //size: 100.0,
+                          color: Colors.yellow)
+                  ),
+                ]
+                /*child: GridView.count(
           crossAxisCount: 3,
           physics: ScrollPhysics(), // to disable GridView's scrolling
           shrinkWrap: true,
           children: <Widget>[
             IconButton(
-                iconSize: 100,
+                iconSize: 75.0,
                 icon: Icon(
                     Icons.bookmark,
                     //size: 100.0,
                     color: Colors.purple)
             ),
             IconButton(
-                iconSize: 100,
+                iconSize: 75.0,
                 icon: Icon(
                   Icons.bookmark,
                   //size: 100.0,
                   color: Colors.blue)
             ),
             IconButton(
-                iconSize: 100,
+                iconSize: 75.0,
                 icon: Icon(
                   Icons.bookmark,
                   //size: 100.0,
                   color: Colors.green)
             ),
             IconButton(
-                iconSize: 100,
+                iconSize: 75.0,
                 icon: Icon(
                   Icons.bookmark,
                   //size: 100.0,
@@ -201,7 +231,7 @@ class _StickersPageState extends State<StickersPage> {
                 size: 100.0,
                 color: Colors.yellow)
             ),*/
-          ],
+          ],*/
         )));
   }
 
@@ -224,33 +254,70 @@ class _StickersPageState extends State<StickersPage> {
         padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
         child: Center(
             child: Container(
-                child: GridView.count(
+                child: Wrap(children: <Widget>[
+                  IconButton(
+                      iconSize: 85.0,
+                      icon: Icon(
+                          Icons.bookmark,
+                          //size: 100.0,
+                          color: Colors.purple)
+                  ),
+                  IconButton(
+                      iconSize: 85.0,
+                      icon: Icon(
+                          Icons.bookmark,
+                          //size: 100.0,
+                          color: Colors.blue)
+                  ),
+                  IconButton(
+                      iconSize: 85.0,
+                      icon: Icon(
+                          Icons.bookmark,
+                          //size: 100.0,
+                          color: Colors.green)
+                  ),
+                  IconButton(
+                      iconSize: 85.0,
+                      icon: Icon(
+                          Icons.bookmark,
+                          //size: 100.0,
+                          color: Colors.yellow)
+                  ),
+                ]
+                /*child: GridView.count(
                   crossAxisCount: 3,
                   physics: ScrollPhysics(), // to disable GridView's scrolling
                   shrinkWrap: true,
                   children: <Widget>[
-                    FlatButton(
-                        child: Icon(
+                    IconButton(
+                        iconSize: 75.0,
+                        icon: Icon(
                             Icons.bookmark,
-                            size: 100.0,
+                            //size: 100.0,
                             color: Colors.purple)
                     ),
-                    FlatButton(child: Icon(
-                        Icons.bookmark,
-                        size: 100.0,
-                        color: Colors.blue)
+                    IconButton(
+                        iconSize: 75.0,
+                        icon: Icon(
+                            Icons.bookmark,
+                            //size: 100.0,
+                            color: Colors.blue)
                     ),
-                    FlatButton(child: Icon(
-                        Icons.bookmark,
-                        size: 100.0,
-                        color: Colors.green)
+                    IconButton(
+                        iconSize: 75.0,
+                        icon: Icon(
+                            Icons.bookmark,
+                            //size: 100.0,
+                            color: Colors.green)
                     ),
-                    FlatButton(child: Icon(
-                        Icons.bookmark,
-                        size: 100.0,
-                        color: Colors.yellow)
+                    IconButton(
+                        iconSize: 75.0,
+                        icon: Icon(
+                            Icons.bookmark,
+                            //size: 100.0,
+                            color: Colors.yellow)
                     ),
-                  ],
+                  ],*/
                 ))));
   }
 
