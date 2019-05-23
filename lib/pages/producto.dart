@@ -454,7 +454,7 @@ class _ProductoPageState extends State<ProductoPage> {
           height: 50.0,
           width: 50.0,
           allowDrawingOutsideViewBox: true,
-        ) : "" : "",
+        ) : Text("") : Text(""),
         Padding(padding: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0)),
         (_offObject.product != null &&
             _offObject.product.labelsTags != null)
@@ -462,7 +462,7 @@ class _ProductoPageState extends State<ProductoPage> {
           height: 50.0,
           width: 50.0,
           allowDrawingOutsideViewBox: true,
-        ) : "" : ""
+        ) : Text("") : Text(""),
       ])),
     ]);
   }
