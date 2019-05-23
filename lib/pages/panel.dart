@@ -463,6 +463,7 @@ class _PanelPageState extends State<PanelPage> {
     //_barcode = '8412042502381'; // MORDARIZ 330 Ml
     //_barcode = '8411620001155'; // El Caserio
     //_barcode = '8413993070103'; // ensaladilla
+    //_barcode = '3270190198611'; // El Muesli
     final url = _baseUrl + _barcode + _baseUrlEnd;
     print(url);
 

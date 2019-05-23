@@ -30,6 +30,8 @@ dependencies:
   font_awesome_flutter: 8.4.0
   barcode_scan:
 
+  flutter_svg:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -53,6 +55,14 @@ flutter:
   assets:
     - assets/flutter-icon.png
     - assets/not_found.png
+    - assets/nova-group-1.svg
+    - assets/nova-group-2.svg
+    - assets/nova-group-3.svg
+    - assets/nova-group-4.svg
+    - assets/nova-group-1.jpg
+    - assets/nova-group-2.jpg
+    - assets/nova-group-3.jpg
+    - assets/nova-group-4.jpg
     - assets/nutriscore-a.png
     - assets/nutriscore-b.png
     - assets/nutriscore-c.png
