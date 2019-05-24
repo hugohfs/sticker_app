@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
 import 'package:sticker_app/pages/panel.dart';
+import 'package:sticker_app/pages/perfil.dart';
 import 'package:sticker_app/pages/stickers.dart';
 
 
@@ -63,11 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         return StickersPage();
         break;
       case 2:
-        return Text(
-          'Index 2: Perfil',
-          style: optionStyle,
-        );
-        //return ChatScreen();
+        return PerfilPage();
         break;
       default:
         return Text("Index tab not defined");

@@ -250,84 +250,105 @@ class _ProductoPageState extends State<ProductoPage> {
                                     : Image.asset('assets/not_found.png')
                     : Image.asset('assets/not_found.png'))
           ])),
+      Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+          child: Center(
+              child: Wrap(spacing: 10.0,children: <Widget>[
+            SizedBox(
+                width: 70.0,
+                height: 100.0,
+                child: GridTile(
+                    child: Container(
+                        decoration: new BoxDecoration(
+                            color: Colors.orange[300],
+                            borderRadius: new BorderRadius.all(
+                                const Radius.circular(10.0))),
+                        child: new Center(
+                          child: new Text(
+                              (_offObject.product != null &&
+                                  _offObject.product.nutriments != null)
+                                  ? _offObject.product.nutriments.fat100g +
+                                  _offObject.product.nutriments.fatUnit
+                                  : "No data found",
+                              style: TextStyle(),
+                              textAlign: TextAlign.center),
+                        )),
+                    header: Text('Grasas', textAlign: TextAlign.center),
+                    footer: Text('', textAlign: TextAlign.center))),
+                SizedBox(
+                    width: 70.0,
+                    height: 100.0,
+                    child: GridTile(
+                        child: Container(
+                            decoration: new BoxDecoration(
+                                color: Colors.orange[300],
+                                borderRadius: new BorderRadius.all(
+                                    const Radius.circular(10.0))),
+                            child: new Center(
+                              child: new Text(
+                                  (_offObject.product != null &&
+                                      _offObject.product.nutriments != null)
+                                      ? _offObject.product.nutriments.saturatedFat100g +
+                                      _offObject.product.nutriments.saturatedFatUnit
+                                      : "No data found",
+                                  style: TextStyle(),
+                                  textAlign: TextAlign.center),
+                            )),
+                        header: Text('Grasas saturadas', textAlign: TextAlign.center),
+                        footer: Text('', textAlign: TextAlign.center))),
+                SizedBox(
+                    width: 70.0,
+                    height: 100.0,
+                    child: GridTile(
+                        child: Container(
+                            decoration: new BoxDecoration(
+                                color: Colors.orange[300],
+                                borderRadius: new BorderRadius.all(
+                                    const Radius.circular(10.0))),
+                            child: new Center(
+                              child: new Text(
+                                  (_offObject.product != null &&
+                                      _offObject.product.nutriments != null)
+                                      ? _offObject.product.nutriments.sugars100g +
+                                      _offObject.product.nutriments.sugarsUnit
+                                      : "No data found",
+                                  style: TextStyle(),
+                                  textAlign: TextAlign.center),
+                            )),
+                        header: Text('Azúcares', textAlign: TextAlign.center),
+                        footer: Text('', textAlign: TextAlign.center))),
+                SizedBox(
+                    width: 70.0,
+                    height: 100.0,
+                    child: GridTile(
+                        child: Container(
+                            decoration: new BoxDecoration(
+                                color: Colors.orange[300],
+                                borderRadius: new BorderRadius.all(
+                                    const Radius.circular(10.0))),
+                            child: new Center(
+                              child: new Text(
+                                  (_offObject.product != null &&
+                                      _offObject.product.nutriments != null)
+                                      ? _offObject.product.nutriments.salt100g +
+                                      _offObject.product.nutriments.saltUnit
+                                      : "No data found",
+                                  style: TextStyle(),
+                                  textAlign: TextAlign.center),
+                            )),
+                        header: Text('Sal', textAlign: TextAlign.center),
+                        footer: Text('', textAlign: TextAlign.center))),
+          ]))),
       /*Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Center(
-                child: (_offObject.product != null &&
-                        _offObject.product.nutritionGrades != null)
-                    ? _offObject.product.nutritionGrades == 'a'
-                        ? Image.asset('assets/nutriscore-a.png')
-                        : _offObject.product.nutritionGrades == 'b'
-                            ? Image.asset('assets/nutriscore-b.png')
-                            : _offObject.product.nutritionGrades == 'c'
-                                ? Image.asset('assets/nutriscore-c.png')
-                                : _offObject.product.nutritionGrades == 'd'
-                                    ? Image.asset('assets/nutriscore-d.png')
-                                    : _offObject.product.nutritionGrades == 'e'
-                                        ? Image.asset('assets/nutriscore-e.png')
-                                        : Image.asset('assets/not_found.png')
-                    : (_offObject.product != null &&
-                            _offObject.product.nutritionGradeFr != null)
-                        ? _offObject.product.nutritionGradeFr == 'a'
-                            ? Image.asset('assets/nutriscore-a.png')
-                            : _offObject.product.nutritionGradeFr == 'b'
-                                ? Image.asset('assets/nutriscore-b.png')
-                                : _offObject.product.nutritionGradeFr == 'c'
-                                    ? Image.asset('assets/nutriscore-c.png')
-                                    : _offObject.product.nutritionGradeFr == 'd'
-                                        ? Image.asset('assets/nutriscore-d.png')
-                                        : _offObject.product.nutritionGradeFr ==
-                                                'e'
-                                            ? Image.asset(
-                                                'assets/nutriscore-e.png')
-                                            : Image.asset(
-                                                'assets/not_found.png')
-                        : Image.asset('assets/not_found.png'))
-          ])),*/
+          child: Text('Valores nutricionales por 100 g', textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12))),*/
       Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-          child: Text('Valores nutricionales por 100 g', style: TextStyle(fontSize: 20))),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Grasas: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.fat100g + _offObject.product.nutriments.fatUnit
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Acidos grasos saturados ", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.saturatedFat100g + _offObject.product.nutriments.saturatedFatUnit
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Azúcar: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.sugars100g + _offObject.product.nutriments.sugarsUnit
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Sal: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.salt100g + _offObject.product.nutriments.saltUnit
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-          child: Text('Ingredientes', style: TextStyle(fontSize: 20),)
-      ),
+          padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+          child: Text(
+            'Ingredientes',
+            style: TextStyle(fontSize: 20),
+          )),
       Divider(),
       Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
@@ -384,17 +405,20 @@ class _ProductoPageState extends State<ProductoPage> {
           child: new Wrap(children: <Widget>[
             Text("Proteïnas: ", style: TextStyle(fontWeight: FontWeight.bold)),
             Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.proteins100g + _offObject.product.nutriments.proteinsUnit
+                    _offObject.product.nutriments != null)
+                ? _offObject.product.nutriments.proteins100g +
+                    _offObject.product.nutriments.proteinsUnit
                 : "No data found")
           ])),
       Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
           child: new Wrap(children: <Widget>[
-            Text("Valor enerjetico: ", style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Valor enerjetico: ",
+                style: TextStyle(fontWeight: FontWeight.bold)),
             Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.energy100g + _offObject.product.nutriments.energyUnit
+                    _offObject.product.nutriments != null)
+                ? _offObject.product.nutriments.energy100g +
+                    _offObject.product.nutriments.energyUnit
                 : "No data found")
           ])),
       Padding(
@@ -402,17 +426,20 @@ class _ProductoPageState extends State<ProductoPage> {
           child: new Wrap(children: <Widget>[
             Text("Grasas: ", style: TextStyle(fontWeight: FontWeight.bold)),
             Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.fat100g + _offObject.product.nutriments.fatUnit
+                    _offObject.product.nutriments != null)
+                ? _offObject.product.nutriments.fat100g +
+                    _offObject.product.nutriments.fatUnit
                 : "No data found")
           ])),
       Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
           child: new Wrap(children: <Widget>[
-            Text("Acidos grasos saturados ", style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Acidos grasos saturados ",
+                style: TextStyle(fontWeight: FontWeight.bold)),
             Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.saturatedFat100g + _offObject.product.nutriments.saturatedFatUnit
+                    _offObject.product.nutriments != null)
+                ? _offObject.product.nutriments.saturatedFat100g +
+                    _offObject.product.nutriments.saturatedFatUnit
                 : "No data found")
           ])),
       Padding(
@@ -420,8 +447,9 @@ class _ProductoPageState extends State<ProductoPage> {
           child: new Wrap(children: <Widget>[
             Text("Azúcar: ", style: TextStyle(fontWeight: FontWeight.bold)),
             Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.sugars100g + _offObject.product.nutriments.sugarsUnit
+                    _offObject.product.nutriments != null)
+                ? _offObject.product.nutriments.sugars100g +
+                    _offObject.product.nutriments.sugarsUnit
                 : "No data found")
           ])),
       Padding(
@@ -429,8 +457,9 @@ class _ProductoPageState extends State<ProductoPage> {
           child: new Wrap(children: <Widget>[
             Text("Sal: ", style: TextStyle(fontWeight: FontWeight.bold)),
             Text((_offObject.product != null &&
-                _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.salt100g + _offObject.product.nutriments.saltUnit
+                    _offObject.product.nutriments != null)
+                ? _offObject.product.nutriments.salt100g +
+                    _offObject.product.nutriments.saltUnit
                 : "No data found")
           ])),
       Padding(
@@ -441,29 +470,38 @@ class _ProductoPageState extends State<ProductoPage> {
           padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
           child: new Wrap(children: <Widget>[
             Text((_offObject.product != null &&
-                _offObject.product.labels != null)
+                    _offObject.product.labels != null)
                 ? _offObject.product.labels.replaceAll("\n", "")
                 : "No data found"),
           ])),
       Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-      child: new Wrap(children: <Widget>[
-        (_offObject.product != null &&
-          _offObject.product.labelsTags != null)
-          ? _offObject.product.labelsTags.contains("en:eu-organic") ? SvgPicture.network("https://static.openfoodfacts.org/images/lang/en/labels/eu-organic.135x90.svg",
-          height: 50.0,
-          width: 50.0,
-          allowDrawingOutsideViewBox: true,
-        ) : Text("") : Text(""),
-        Padding(padding: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0)),
-        (_offObject.product != null &&
-            _offObject.product.labelsTags != null)
-            ? _offObject.product.labelsTags.contains("fr:ab-agriculture-biologique") ? SvgPicture.network("https://static.openfoodfacts.org/images/lang/fr/labels/ab-agriculture-biologique.74x90.svg",
-          height: 50.0,
-          width: 50.0,
-          allowDrawingOutsideViewBox: true,
-        ) : Text("") : Text(""),
-      ])),
+          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+          child: new Wrap(children: <Widget>[
+            (_offObject.product != null &&
+                    _offObject.product.labelsTags != null)
+                ? _offObject.product.labelsTags.contains("en:eu-organic")
+                    ? SvgPicture.network(
+                        "https://static.openfoodfacts.org/images/lang/en/labels/eu-organic.135x90.svg",
+                        height: 50.0,
+                        width: 50.0,
+                        allowDrawingOutsideViewBox: true,
+                      )
+                    : Text("")
+                : Text(""),
+            Padding(padding: const EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0)),
+            (_offObject.product != null &&
+                    _offObject.product.labelsTags != null)
+                ? _offObject.product.labelsTags
+                        .contains("fr:ab-agriculture-biologique")
+                    ? SvgPicture.network(
+                        "https://static.openfoodfacts.org/images/lang/fr/labels/ab-agriculture-biologique.74x90.svg",
+                        height: 50.0,
+                        width: 50.0,
+                        allowDrawingOutsideViewBox: true,
+                      )
+                    : Text("")
+                : Text(""),
+          ])),
     ]);
   }
 }

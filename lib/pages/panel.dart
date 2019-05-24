@@ -464,6 +464,7 @@ class _PanelPageState extends State<PanelPage> {
     //_barcode = '8411620001155'; // El Caserio
     //_barcode = '8413993070103'; // ensaladilla
     //_barcode = '3270190198611'; // El Muesli
+    //_barcode = '3421557111051'; // Flakes
     final url = _baseUrl + _barcode + _baseUrlEnd;
     print(url);
 
