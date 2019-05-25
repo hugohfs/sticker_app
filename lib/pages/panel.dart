@@ -88,7 +88,7 @@ class _PanelPageState extends State<PanelPage> {
         //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
         height: 65.0,
         child: /*Wrap(*/
-          ListView(
+            ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
@@ -97,32 +97,21 @@ class _PanelPageState extends State<PanelPage> {
               //color: Colors.orange,
               child: IconButton(
                   iconSize: 65.0,
-                  icon: Icon(
-                      Icons.image,
-                      color: Colors.purple)
-              ),
+                  icon: Icon(Icons.image, color: Colors.purple)),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
               //color: Colors.blue,
               child: IconButton(
-                iconSize: 65.0,
-                icon: Icon(
-                    Icons.image,
-                    color: Colors.blue)
-              ),
+                  iconSize: 65.0, icon: Icon(Icons.image, color: Colors.blue)),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
               //color: Colors.green,
               child: IconButton(
-                  iconSize: 65.0,
-                  icon: Icon(
-                      Icons.image,
-                      color: Colors.green)
-              ),
+                  iconSize: 65.0, icon: Icon(Icons.image, color: Colors.green)),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
@@ -130,10 +119,7 @@ class _PanelPageState extends State<PanelPage> {
               //color: Colors.yellow,
               child: IconButton(
                   iconSize: 65.0,
-                  icon: Icon(
-                      Icons.image,
-                      color: Colors.yellow)
-              ),
+                  icon: Icon(Icons.image, color: Colors.yellow)),
             ),
           ],
         ),
@@ -162,55 +148,41 @@ class _PanelPageState extends State<PanelPage> {
           child: Container(
         //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
         //margin: EdgeInsets.symmetric(vertical: 10.0),
-            height: 65.0,
-            child: /*Wrap*/
-              ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
+        height: 65.0,
+        child: /*Wrap*/
+            ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
             Container(
-            margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-            width: 65.0,
-            //color: Colors.purple,
-            child: IconButton(
-                iconSize: 65.0,
-                icon: Icon(
-                    Icons.image,
-                    color: Colors.purple)
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+              width: 65.0,
+              //color: Colors.purple,
+              child: IconButton(
+                  iconSize: 65.0,
+                  icon: Icon(Icons.image, color: Colors.purple)),
             ),
-          ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-          width: 65.0,
-          //color: Colors.blue,
-          child: IconButton(
-              iconSize: 65.0,
-              icon: Icon(
-                  Icons.image,
-                  color: Colors.blue)
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-          width: 65.0,
-          //color: Colors.green,
-          child: IconButton(
-              iconSize: 65.0,
-              icon: Icon(
-                  Icons.image,
-                  color: Colors.green)
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-          width: 65.0,
-          //color: Colors.yellow,
-          child: IconButton(
-              iconSize: 65.0,
-              icon: Icon(
-                  Icons.image,
-                  color: Colors.yellow)
-          ),
-        )
+            Container(
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+              width: 65.0,
+              //color: Colors.blue,
+              child: IconButton(
+                  iconSize: 65.0, icon: Icon(Icons.image, color: Colors.blue)),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+              width: 65.0,
+              //color: Colors.green,
+              child: IconButton(
+                  iconSize: 65.0, icon: Icon(Icons.image, color: Colors.green)),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+              width: 65.0,
+              //color: Colors.yellow,
+              child: IconButton(
+                  iconSize: 65.0,
+                  icon: Icon(Icons.image, color: Colors.yellow)),
+            )
           ],
         ),
       )),
@@ -262,36 +234,28 @@ class _PanelPageState extends State<PanelPage> {
                       );
                     }))),*/
                 child: Wrap(children: <Widget>[
-                    IconButton(
-                    iconSize: 85.0,
-                    icon: Icon(
-                        Icons.bookmark,
-                        //size: 100.0,
-                        color: Colors.purple)
-                ),
-              IconButton(
-                  iconSize: 85.0,
-                  icon: Icon(
-                      Icons.bookmark,
-                      //size: 100.0,
-                      color: Colors.blue)
-              ),
-              IconButton(
-                  iconSize: 85.0,
-                  icon: Icon(
-                      Icons.bookmark,
-                      //size: 100.0,
-                      color: Colors.green)
-              ),
-              IconButton(
-                  iconSize: 85.0,
-                  icon: Icon(
-                      Icons.bookmark,
-                      //size: 100.0,
-                      color: Colors.yellow)
-              ),
-              ]
-                /*child: GridView.count(
+          IconButton(
+              iconSize: 85.0,
+              icon: Icon(Icons.bookmark,
+                  //size: 100.0,
+                  color: Colors.purple)),
+          IconButton(
+              iconSize: 85.0,
+              icon: Icon(Icons.bookmark,
+                  //size: 100.0,
+                  color: Colors.blue)),
+          IconButton(
+              iconSize: 85.0,
+              icon: Icon(Icons.bookmark,
+                  //size: 100.0,
+                  color: Colors.green)),
+          IconButton(
+              iconSize: 85.0,
+              icon: Icon(Icons.bookmark,
+                  //size: 100.0,
+                  color: Colors.yellow)),
+        ]
+                    /*child: GridView.count(
           crossAxisCount: 3,
           physics: ScrollPhysics(), // to disable GridView's scrolling
           shrinkWrap: true,
@@ -324,7 +288,7 @@ class _PanelPageState extends State<PanelPage> {
                     //size: 100.0,
                     color: Colors.yellow)
             ),*/
-            /*FlatButton(
+                    /*FlatButton(
               padding: const EdgeInsets.all(0.0),
             child: Icon(
               Icons.bookmark,
@@ -346,9 +310,8 @@ class _PanelPageState extends State<PanelPage> {
                 size: 100.0,
                 color: Colors.yellow)
             ),*/
-          //],
-        )
-        )));
+                    //],
+                    ))));
   }
 
   Widget _showSearchInputAndButtons() {
@@ -465,6 +428,7 @@ class _PanelPageState extends State<PanelPage> {
     //_barcode = '8413993070103'; // ensaladilla
     //_barcode = '3270190198611'; // El Muesli
     //_barcode = '3421557111051'; // Flakes
+    //_barcode = '8412042502381'; // Agua mondariz
     final url = _baseUrl + _barcode + _baseUrlEnd;
     print(url);
 
@@ -472,7 +436,14 @@ class _PanelPageState extends State<PanelPage> {
 
     if (response.statusCode == 200) {
       // If server returns an OK response, parse the JSON
-      return OffObject.fromJson(json.decode(response.body));
+      try {
+        return OffObject.fromJson(json.decode(response.body));
+      } catch (e) {
+        setState(() {
+          _errorMessage = "Error en obtención de datos: $e";
+        });
+        throw Exception('Error en obtención de datos.');
+      }
     } else {
       // If that response was not OK, throw an error.
       throw Exception('Failed to load post');
@@ -481,13 +452,17 @@ class _PanelPageState extends State<PanelPage> {
 
   Widget _showErrorMessage() {
     if (_errorMessage != null && _errorMessage.length > 0) {
-      return new Text(
-        _errorMessage,
-        style: TextStyle(
-            fontSize: 13.0,
-            color: Colors.red,
-            height: 1.0,
-            fontWeight: FontWeight.w300),
+      return new Wrap(
+        children: <Widget>[
+          Text(
+            _errorMessage,
+            style: TextStyle(
+                fontSize: 13.0,
+                color: Colors.red,
+                height: 1.0,
+                fontWeight: FontWeight.w300),
+          )
+        ],
       );
     } else {
       return new Container(
@@ -526,5 +501,4 @@ class _PanelPageState extends State<PanelPage> {
       });
     }
   }
-
 }

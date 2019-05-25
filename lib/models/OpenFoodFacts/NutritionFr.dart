@@ -35,7 +35,9 @@ class NutritionFr {
     sizes = json['sizes'] != null ? new Sizes.fromJson(json['sizes']) : null;
     y2 = json['y2'];
     x1 = json['x1'];
-    angle = json['angle'];
+    angle = json.containsKey('angle') == true
+        ? json['angle'].toString()
+        : null;
     whiteMagic = json['white_magic'];
     imgid = json['imgid'];
   }

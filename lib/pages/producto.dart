@@ -247,8 +247,9 @@ class _ProductoPageState extends State<ProductoPage> {
                                         height: 120,
                                         width: 120,
                                       )
-                                    : Image.asset('assets/not_found.png')
-                    : Image.asset('assets/not_found.png'))
+                                      : Text('')// Image.asset('assets/not_found.png')
+                    : Text('') // Image.asset('assets/not_found.png')
+            )
           ])),
       Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
@@ -267,8 +268,7 @@ class _ProductoPageState extends State<ProductoPage> {
                           child: new Text(
                               (_offObject.product != null &&
                                   _offObject.product.nutriments != null)
-                                  ? _offObject.product.nutriments.fat100g +
-                                  _offObject.product.nutriments.fatUnit
+                                  ? (_offObject.product.nutriments.fat100g != null ? _offObject.product.nutriments.fat100g : '') + (_offObject.product.nutriments.fatUnit != null ? _offObject.product.nutriments.fatUnit : '')
                                   : "No data found",
                               style: TextStyle(),
                               textAlign: TextAlign.center),
@@ -288,8 +288,7 @@ class _ProductoPageState extends State<ProductoPage> {
                               child: new Text(
                                   (_offObject.product != null &&
                                       _offObject.product.nutriments != null)
-                                      ? _offObject.product.nutriments.saturatedFat100g +
-                                      _offObject.product.nutriments.saturatedFatUnit
+                                      ? (_offObject.product.nutriments.saturatedFat100g != null ? _offObject.product.nutriments.saturatedFat100g : '') + (_offObject.product.nutriments.saturatedFatUnit != null ? _offObject.product.nutriments.saturatedFatUnit : '')
                                       : "No data found",
                                   style: TextStyle(),
                                   textAlign: TextAlign.center),
@@ -309,8 +308,7 @@ class _ProductoPageState extends State<ProductoPage> {
                               child: new Text(
                                   (_offObject.product != null &&
                                       _offObject.product.nutriments != null)
-                                      ? _offObject.product.nutriments.sugars100g +
-                                      _offObject.product.nutriments.sugarsUnit
+                                      ? (_offObject.product.nutriments.sugars100g != null ? _offObject.product.nutriments.sugars100g : '') + (_offObject.product.nutriments.sugarsUnit != null ? _offObject.product.nutriments.sugarsUnit : '')
                                       : "No data found",
                                   style: TextStyle(),
                                   textAlign: TextAlign.center),
@@ -330,8 +328,7 @@ class _ProductoPageState extends State<ProductoPage> {
                               child: new Text(
                                   (_offObject.product != null &&
                                       _offObject.product.nutriments != null)
-                                      ? _offObject.product.nutriments.salt100g +
-                                      _offObject.product.nutriments.saltUnit
+                                      ? (_offObject.product.nutriments.salt100g != null ? _offObject.product.nutriments.salt100g : '') + (_offObject.product.nutriments.saltUnit != null ? _offObject.product.nutriments.saltUnit : '')
                                       : "No data found",
                                   style: TextStyle(),
                                   textAlign: TextAlign.center),
@@ -406,8 +403,7 @@ class _ProductoPageState extends State<ProductoPage> {
             Text("Proteïnas: ", style: TextStyle(fontWeight: FontWeight.bold)),
             Text((_offObject.product != null &&
                     _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.proteins100g +
-                    _offObject.product.nutriments.proteinsUnit
+                ? (_offObject.product.nutriments.proteins100g != null ? _offObject.product.nutriments.proteins100g : '') + (_offObject.product.nutriments.proteinsUnit != null ? _offObject.product.nutriments.proteinsUnit : '')
                 : "No data found")
           ])),
       Padding(
@@ -417,49 +413,7 @@ class _ProductoPageState extends State<ProductoPage> {
                 style: TextStyle(fontWeight: FontWeight.bold)),
             Text((_offObject.product != null &&
                     _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.energy100g +
-                    _offObject.product.nutriments.energyUnit
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Grasas: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((_offObject.product != null &&
-                    _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.fat100g +
-                    _offObject.product.nutriments.fatUnit
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Acidos grasos saturados ",
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((_offObject.product != null &&
-                    _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.saturatedFat100g +
-                    _offObject.product.nutriments.saturatedFatUnit
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Azúcar: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((_offObject.product != null &&
-                    _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.sugars100g +
-                    _offObject.product.nutriments.sugarsUnit
-                : "No data found")
-          ])),
-      Padding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
-          child: new Wrap(children: <Widget>[
-            Text("Sal: ", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text((_offObject.product != null &&
-                    _offObject.product.nutriments != null)
-                ? _offObject.product.nutriments.salt100g +
-                    _offObject.product.nutriments.saltUnit
+                ?(_offObject.product.nutriments.energy100g != null ? _offObject.product.nutriments.energy100g : '') + (_offObject.product.nutriments.energyUnit != null ? _offObject.product.nutriments.energyUnit : '')
                 : "No data found")
           ])),
       Padding(

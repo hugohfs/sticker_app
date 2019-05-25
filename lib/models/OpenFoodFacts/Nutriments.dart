@@ -352,6 +352,12 @@ class Nutriments {
     return data;
   }
 
+  /*String get energy100g => _energy100g != null ? _energy100g : '';
+
+  set energy100g(String value) {
+    _energy100g = value;
+  }*/
+
   @override
   String toString() {
     return 'Nutriments{sugarsServing: $sugarsServing, carbohydrates: $carbohydrates, salt100g: $salt100g, fat100g: $fat100g, carbohydrates100g: $carbohydrates100g, saturatedFatValue: $saturatedFatValue, proteinsUnit: $proteinsUnit, salt: $salt, sugars100g: $sugars100g, sugars: $sugars, energyServing: $energyServing, fatUnit: $fatUnit, energy: $energy, nutritionScoreFr: $nutritionScoreFr, energy100g: $energy100g, nutritionScoreUk100g: $nutritionScoreUk100g, saltServing: $saltServing, saturatedFatUnit: $saturatedFatUnit, fatValue: $fatValue, saltUnit: $saltUnit, proteins: $proteins, proteins100g: $proteins100g, carbohydratesServing: $carbohydratesServing, saturatedFat: $saturatedFat, energyUnit: $energyUnit, fat: $fat, fatServing: $fatServing, proteinsServing: $proteinsServing, sodiumValue: $sodiumValue, saltValue: $saltValue, sugarsValue: $sugarsValue, energyValue: $energyValue, sodium100g: $sodium100g, nutritionScoreUk: $nutritionScoreUk, sodium: $sodium, saturatedFat100g: $saturatedFat100g, nutritionScoreFr100g: $nutritionScoreFr100g, carbohydratesValue: $carbohydratesValue, carbohydratesUnit: $carbohydratesUnit, saturatedFatServing: $saturatedFatServing, sodiumServing: $sodiumServing, proteinsValue: $proteinsValue, sugarsUnit: $sugarsUnit, sodiumUnit: $sodiumUnit}';
