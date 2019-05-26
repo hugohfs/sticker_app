@@ -8,6 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart'
     as font_awesome_flutter;
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
+import 'package:sticker_app/models/OpenFoodFacts/OffSearchResult.dart';
+import 'package:sticker_app/pages/lista_productos.dart';
 import 'package:sticker_app/pages/producto.dart';
 
 class PanelPage extends StatefulWidget {
@@ -25,11 +27,12 @@ class PanelPage extends StatefulWidget {
 class _PanelPageState extends State<PanelPage> {
   String _textMessage;
   Future<OffObject> _offObject;
+  Future<OffSearchResult> _offSearchResult;
   OffObject _offObjectCaptured;
+  OffSearchResult _offSearchResultCaptured;
 
   String _barcode;
-  final _baseUrl = 'https://world.openfoodfacts.org/api/v0/product/';
-  final _baseUrlEnd = '.json';
+  String _searchText;
   final _formKey = new GlobalKey<FormState>();
   String _errorMessage;
 
@@ -346,16 +349,17 @@ class _PanelPageState extends State<PanelPage> {
                       color: Colors.green,
                     ),
                     onPressed: () {
-                      var res = _validateAndSubmit();
+                      var res = _validateAndSearchProducts();
+                      //var res = _validateAndGetProduct();
                       res.then((value) {
-                        _offObject.then((value) {
+                        _offSearchResult.then((value) {
                           setState(() {
-                            _offObjectCaptured = value;
+                            _offSearchResultCaptured = value;
                           });
 
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
-                                  ProductoPage(offObject: _offObjectCaptured)));
+                                  ListaProductosPage(offSearchResult: _offSearchResultCaptured)));
                         });
                       });
                     })),
@@ -385,13 +389,62 @@ class _PanelPageState extends State<PanelPage> {
         ));
   }
 
-  Future<String> _validateAndSubmit() async {
+  Future<String> _scanQR() async {
+    print('_scanQR');
+    try {
+      String qrResult = await BarcodeScanner.scan();
+      setState(() {
+        _textEditingController.text = qrResult;
+      });
+
+      _validateAndGetProduct();
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        setState(() {
+          _textEditingController.text = "Camera permission was denied";
+        });
+      } else {
+        setState(() {
+          _textEditingController.text = "Unknown error $e";
+        });
+      }
+    } on FormatException {
+      setState(() {
+        _textEditingController.text =
+        "You pressed the back button before scanning anything";
+      });
+    } catch (e) {
+      setState(() {
+        _textEditingController.text = "Unknown error $e";
+      });
+    }
+  }
+
+  Future<String> _validateAndGetProduct() async {
     setState(() {
       _errorMessage = "";
     });
     if (_validateAndSave()) {
       try {
         _getDataFromAPI();
+
+        return 'OK';
+      } catch (e) {
+        print('Error: $e');
+        setState(() {
+          _errorMessage = e.message;
+        });
+      }
+    }
+  }
+
+  Future<String> _validateAndSearchProducts() async {
+    setState(() {
+      _errorMessage = "";
+    });
+    if (_validateAndSave()) {
+      try {
+        _searchProductsFromAPI();
 
         return 'OK';
       } catch (e) {
@@ -422,6 +475,16 @@ class _PanelPageState extends State<PanelPage> {
     return 'OK';
   }
 
+  Future<String> _searchProductsFromAPI() async {
+    setState(() {
+      _offSearchResult = _fetchOffSearchResult();
+      print(_offSearchResult.toString());
+      _textMessage = null;
+    });
+
+    return 'OK';
+  }
+
   Future<OffObject> _fetchOffObject() async {
     //_barcode = '8412042502381'; // MORDARIZ 330 Ml
     //_barcode = '8411620001155'; // El Caserio
@@ -429,7 +492,7 @@ class _PanelPageState extends State<PanelPage> {
     //_barcode = '3270190198611'; // El Muesli
     //_barcode = '3421557111051'; // Flakes
     //_barcode = '8412042502381'; // Agua mondariz
-    final url = _baseUrl + _barcode + _baseUrlEnd;
+    final url = g.PANEL_BARCODE_PRODUCT_BASE_URL + _barcode + g.PANEL_BARCODE_PRODUCT_BASE_URL_END;
     print(url);
 
     final response = await http.get(url);
@@ -438,6 +501,31 @@ class _PanelPageState extends State<PanelPage> {
       // If server returns an OK response, parse the JSON
       try {
         return OffObject.fromJson(json.decode(response.body));
+      } catch (e) {
+        setState(() {
+          _errorMessage = "Error en obtención de datos: $e";
+        });
+        throw Exception('Error en obtención de datos.');
+      }
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to load post');
+    }
+  }
+
+  Future<OffSearchResult> _fetchOffSearchResult() async {
+    //_barcode = '8412042502381'; // MORDARIZ 330 Ml
+    //_barcode = '8411620001155'; // El Caserio
+    final url = g.PANEL_SEARCH_PRODUCTS_BASE_URL + _barcode + g.PANEL_SEARCH_PRODUCTS_BASE_URL_END;
+    print(url);
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      // If server returns an OK response, parse the JSON
+      try {
+        print(response.body);
+        return OffSearchResult.fromJson(json.decode(response.body));
       } catch (e) {
         setState(() {
           _errorMessage = "Error en obtención de datos: $e";
@@ -471,34 +559,4 @@ class _PanelPageState extends State<PanelPage> {
     }
   }
 
-  Future<String> _scanQR() async {
-    print('_scanQR');
-    try {
-      String qrResult = await BarcodeScanner.scan();
-      setState(() {
-        _textEditingController.text = qrResult;
-      });
-
-      _validateAndSubmit();
-    } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
-        setState(() {
-          _textEditingController.text = "Camera permission was denied";
-        });
-      } else {
-        setState(() {
-          _textEditingController.text = "Unknown error $e";
-        });
-      }
-    } on FormatException {
-      setState(() {
-        _textEditingController.text =
-            "You pressed the back button before scanning anything";
-      });
-    } catch (e) {
-      setState(() {
-        _textEditingController.text = "Unknown error $e";
-      });
-    }
-  }
 }
