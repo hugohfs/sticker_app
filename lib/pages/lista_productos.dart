@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
+import 'package:sticker_app/models/OpenFoodFacts/OffObject.dart';
 import 'package:sticker_app/models/OpenFoodFacts/OffSearchResult.dart';
+import 'package:sticker_app/pages/producto.dart';
 
 class ListaProductosPage extends StatefulWidget {
   ListaProductosPage({Key key, this.offSearchResult}) : super(key: key);
@@ -51,6 +53,15 @@ class _ListaProductosPageState extends State<ListaProductosPage> {
                   productName,
                   style: TextStyle(fontSize: 20.0),
                 ),
+                onTap: () {
+
+                  OffObject off = new OffObject();
+                  off.product = widget.offSearchResult.products.elementAt(index);
+
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          ProductoPage(offObject: off)));
+                },
                 /*trailing: IconButton(
                     icon: (completed)
                         ? Icon(
