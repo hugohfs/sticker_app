@@ -100,29 +100,91 @@ class _PanelPageState extends State<PanelPage> {
               //color: Colors.orange,
               child: IconButton(
                   iconSize: 65.0,
-                  icon: Icon(Icons.image, color: Colors.purple)),
+                  //icon: Icon(Icons.image, color: Colors.purple),
+                  icon: Image.network(g.PANEL_HISTORY_PRODUCT_01_IMAGE),
+                  onPressed: () {
+                    _barcode = '3421557111051'; // Flakes
+                    _offObject = _fetchOffObject();
+
+                    _offObject.then((value) {
+                      setState(() {
+                        _offObjectCaptured = value;
+                      });
+
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              ProductoPage(offObject: _offObjectCaptured)));
+                    });
+                  },),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
               //color: Colors.blue,
               child: IconButton(
-                  iconSize: 65.0, icon: Icon(Icons.image, color: Colors.blue)),
+                iconSize: 65.0,
+                //icon: Icon(Icons.image, color: Colors.blue),
+                icon: Image.network(g.PANEL_HISTORY_PRODUCT_02_IMAGE),
+                onPressed: () {
+                  _barcode = '8411620001155'; // El Caserio
+                  _offObject = _fetchOffObject();
+
+                  _offObject.then((value) {
+                    setState(() {
+                      _offObjectCaptured = value;
+                    });
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            ProductoPage(offObject: _offObjectCaptured)));
+                  });
+                },),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
               //color: Colors.green,
               child: IconButton(
-                  iconSize: 65.0, icon: Icon(Icons.image, color: Colors.green)),
+                iconSize: 65.0,
+                //icon: Icon(Icons.image, color: Colors.green),
+                icon: Image.network(g.PANEL_HISTORY_PRODUCT_03_IMAGE),
+                onPressed: () {
+                  _barcode = '8413993070103'; // ensaladilla
+                  _offObject = _fetchOffObject();
+
+                  _offObject.then((value) {
+                    setState(() {
+                      _offObjectCaptured = value;
+                    });
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            ProductoPage(offObject: _offObjectCaptured)));
+                  });
+                },),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
               //color: Colors.yellow,
               child: IconButton(
-                  iconSize: 65.0,
-                  icon: Icon(Icons.image, color: Colors.yellow)),
+                iconSize: 65.0,
+                //icon: Icon(Icons.image, color: Colors.yellow),
+                icon: Image.network(g.PANEL_HISTORY_PRODUCT_04_IMAGE),
+                onPressed: () {
+                  _barcode = '3270190198611'; // El Muesli
+                  _offObject = _fetchOffObject();
+
+                  _offObject.then((value) {
+                    setState(() {
+                      _offObjectCaptured = value;
+                    });
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) =>
+                            ProductoPage(offObject: _offObjectCaptured)));
+                  });
+                },),
             ),
           ],
         ),
@@ -392,30 +454,33 @@ class _PanelPageState extends State<PanelPage> {
   Future<String> _scanQR() async {
     print('_scanQR');
     try {
-      String qrResult = await BarcodeScanner.scan();
+      /*String qrResult = await BarcodeScanner.scan();
       setState(() {
         _textEditingController.text = qrResult;
-      });
+      });*/
 
       _validateAndGetProduct();
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
-          _textEditingController.text = "Camera permission was denied";
+          //_textEditingController.text = "Camera permission was denied";
+          _errorMessage = "Camera permission was denied";
         });
       } else {
         setState(() {
-          _textEditingController.text = "Unknown error $e";
+          //_textEditingController.text = "Unknown error $e";
+          _errorMessage = "Unknown error $e";
         });
       }
     } on FormatException {
       setState(() {
-        _textEditingController.text =
-        "You pressed the back button before scanning anything";
+        //_textEditingController.text =  "You pressed the back button before scanning anything";
+        _errorMessage = "You pressed the back button before scanning anything";
       });
     } catch (e) {
       setState(() {
-        _textEditingController.text = "Unknown error $e";
+        //_textEditingController.text = "Unknown error $e";
+        _errorMessage = "Unknown error $e";
       });
     }
   }

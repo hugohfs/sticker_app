@@ -349,6 +349,15 @@ class _ProductoPageState extends State<ProductoPage> {
       Divider(),
       Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+          child: Center(
+              child: Wrap(children: <Widget>[
+                (_offObject.product != null &&
+                    _offObject.product.imageIngredientsUrl != null)
+                    ? Image.network(_offObject.product.imageIngredientsUrl)
+                    : Image.asset('assets/not_found.png')
+              ]))),
+      Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
           child: new Wrap(children: <Widget>[
             Text((_offObject.product != null &&
                     _offObject.product.ingredientsText != null)
@@ -397,6 +406,15 @@ class _ProductoPageState extends State<ProductoPage> {
           padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
           child: Text('Tabla nutricional', style: TextStyle(fontSize: 20))),
       Divider(),
+      Padding(
+          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+          child: Center(
+              child: Wrap(children: <Widget>[
+                (_offObject.product != null &&
+                    _offObject.product.imageNutritionUrl != null)
+                    ? Image.network(_offObject.product.imageNutritionUrl)
+                    : Image.asset('assets/not_found.png')
+              ]))),
       Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
           child: new Wrap(children: <Widget>[

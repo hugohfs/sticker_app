@@ -17,6 +17,10 @@ final String PANEL_BARCODE_PRODUCT_BASE_URL_END = '.json';
 final String PANEL_SEARCH_PRODUCTS_BASE_URL = 'https://world.openfoodfacts.org/cgi/search.pl?search_terms=';
 final String PANEL_SEARCH_PRODUCTS_BASE_URL_END = '&search_simple=1&action=process&json=1';
 
+final String PANEL_HISTORY_PRODUCT_01_IMAGE = 'https://static.openfoodfacts.org/images/products/342/155/711/1051/front_fr.16.100.jpg';
+final String PANEL_HISTORY_PRODUCT_02_IMAGE = 'https://static.openfoodfacts.org/images/products/841/162/000/1155/front_es.3.100.jpg';
+final String PANEL_HISTORY_PRODUCT_03_IMAGE = 'https://static.openfoodfacts.org/images/products/841/399/307/0103/front_es.4.100.jpg';
+final String PANEL_HISTORY_PRODUCT_04_IMAGE = 'https://static.openfoodfacts.org/images/products/327/019/019/8611/front_fr.107.100.jpg';
 
 final String APPBAR_PRODUCTO = "Producto";
 
