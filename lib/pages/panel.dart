@@ -434,32 +434,41 @@ class _PanelPageState extends State<PanelPage> {
                     ),
                     //onPressed: _validateAndSubmit,
                     onPressed: () {
-                      var res = _scanQR();
+                      var res = _scanQRAndGetProduct();
                       res.then((value) {
-                        _offObject.then((value) {
-                          setState(() {
-                            _offObjectCaptured = value;
-                          });
+                        if (_offObject != null) {
+                          _offObject.then((value) {
+                            setState(() {
+                              _offObjectCaptured = value;
+                            });
 
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  ProductoPage(offObject: _offObjectCaptured)));
-                        });
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    ProductoPage(offObject: _offObjectCaptured)));
+                          });
+                        }
                       });
                     })),
           ],
         ));
   }
 
-  Future<String> _scanQR() async {
-    print('_scanQR');
+  Future<String> _scanQRAndGetProduct() async {
     try {
-      /*String qrResult = await BarcodeScanner.scan();
-      setState(() {
+      String qrResult = await BarcodeScanner.scan();
+      /*setState(() {
         _textEditingController.text = qrResult;
       });*/
 
-      _validateAndGetProduct();
+      //_getProduct();
+      setState(() {
+        _errorMessage = "";
+        _offObject = _fetchOffObject();
+        _textMessage = null;
+      });
+
+      return 'OK';
+
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
@@ -479,19 +488,24 @@ class _PanelPageState extends State<PanelPage> {
       });
     } catch (e) {
       setState(() {
+        print('Error: $e');
         //_textEditingController.text = "Unknown error $e";
         _errorMessage = "Unknown error $e";
       });
     }
   }
 
-  Future<String> _validateAndGetProduct() async {
+  /*Future<String> _getProduct() async {
     setState(() {
       _errorMessage = "";
     });
     if (_validateAndSave()) {
       try {
-        _getDataFromAPI();
+        //_getDataFromAPI();
+        setState(() {
+          _offObject = _fetchOffObject();
+          _textMessage = null;
+        });
 
         return 'OK';
       } catch (e) {
@@ -501,7 +515,7 @@ class _PanelPageState extends State<PanelPage> {
         });
       }
     }
-  }
+  }*/
 
   Future<String> _validateAndSearchProducts() async {
     setState(() {
@@ -531,14 +545,14 @@ class _PanelPageState extends State<PanelPage> {
     return false;
   }
 
-  Future<String> _getDataFromAPI() async {
+  /*Future<String> _getDataFromAPI() async {
     setState(() {
       _offObject = _fetchOffObject();
       _textMessage = null;
     });
 
     return 'OK';
-  }
+  }*/
 
   Future<String> _searchProductsFromAPI() async {
     setState(() {
