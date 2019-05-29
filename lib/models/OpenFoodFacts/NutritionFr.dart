@@ -27,19 +27,37 @@ class NutritionFr {
         this.imgid});
 
   NutritionFr.fromJson(Map<String, dynamic> json) {
-    y1 = json['y1'];
-    normalize = json['normalize'];
-    x2 = json['x2'];
-    rev = json['rev'];
-    geometry = json['geometry'];
+    y1 = json.containsKey('y1') == true
+        ? json['y1'].toString()
+        : null;
+    normalize = json.containsKey('normalize') == true
+        ? json['normalize'].toString()
+        : null;
+    x2 = json.containsKey('x2') == true
+        ? json['x2'].toString()
+        : null;
+    rev = json.containsKey('rev') == true
+        ? json['rev'].toString()
+        : null;
+    geometry = json.containsKey('geometry') == true
+        ? json['geometry'].toString()
+        : null;
     sizes = json['sizes'] != null ? new Sizes.fromJson(json['sizes']) : null;
-    y2 = json['y2'];
-    x1 = json['x1'];
+    y2 = json.containsKey('y2') == true
+        ? json['y2'].toString()
+        : null;
+    x1 = json.containsKey('x1') == true
+        ? json['x1'].toString()
+        : null;
     angle = json.containsKey('angle') == true
         ? json['angle'].toString()
         : null;
-    whiteMagic = json['white_magic'];
-    imgid = json['imgid'];
+    whiteMagic = json.containsKey('whiteMagic') == true
+        ? json['whiteMagic'].toString()
+        : null;
+    imgid = json.containsKey('imgid') == true
+        ? json['imgid'].toString()
+        : null;
   }
 
   Map<String, dynamic> toJson() {

@@ -32,7 +32,7 @@ class _ListaProductosPageState extends State<ListaProductosPage> {
   }
 
   Widget _showProductList() {
-    if (widget.offSearchResult.products.length > 0) {
+    if (widget.offSearchResult.products != null && widget.offSearchResult.products.length > 0) {
       return ListView.builder(
           shrinkWrap: true,
           itemCount: widget.offSearchResult.products.length,

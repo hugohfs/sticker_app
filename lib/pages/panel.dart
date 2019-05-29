@@ -401,7 +401,7 @@ class _PanelPageState extends State<PanelPage> {
                   ),
                   validator: (value) =>
                       value.isEmpty ? 'El texto no pueder estar vacío' : null,
-                  onSaved: (value) => _barcode = value,
+                  onSaved: (value) => _searchText = value,
                 )),
             Container(
                 width: 50.0,
@@ -462,6 +462,7 @@ class _PanelPageState extends State<PanelPage> {
 
       //_getProduct();
       setState(() {
+        _barcode = qrResult;
         _errorMessage = "";
         _offObject = _fetchOffObject();
         _textMessage = null;
@@ -523,13 +524,19 @@ class _PanelPageState extends State<PanelPage> {
     });
     if (_validateAndSave()) {
       try {
-        _searchProductsFromAPI();
+        //_searchProductsFromAPI();
+
+        setState(() {
+          _offSearchResult = _fetchOffSearchResult();
+          print(_offSearchResult.toString());
+          _textMessage = null;
+        });
 
         return 'OK';
       } catch (e) {
         print('Error: $e');
         setState(() {
-          _errorMessage = e.message;
+          _errorMessage = "Error en obtención de datos: $e";
         });
       }
     }
@@ -554,7 +561,7 @@ class _PanelPageState extends State<PanelPage> {
     return 'OK';
   }*/
 
-  Future<String> _searchProductsFromAPI() async {
+  /*Future<String> _searchProductsFromAPI() async {
     setState(() {
       _offSearchResult = _fetchOffSearchResult();
       print(_offSearchResult.toString());
@@ -562,7 +569,7 @@ class _PanelPageState extends State<PanelPage> {
     });
 
     return 'OK';
-  }
+  }*/
 
   Future<OffObject> _fetchOffObject() async {
     //_barcode = '8412042502381'; // MORDARIZ 330 Ml
@@ -578,14 +585,15 @@ class _PanelPageState extends State<PanelPage> {
 
     if (response.statusCode == 200) {
       // If server returns an OK response, parse the JSON
-      try {
+      return OffObject.fromJson(json.decode(response.body));
+      /*try {
         return OffObject.fromJson(json.decode(response.body));
       } catch (e) {
         setState(() {
           _errorMessage = "Error en obtención de datos: $e";
         });
-        throw Exception('Error en obtención de datos.');
-      }
+        throw Exception(e);
+      }*/
     } else {
       // If that response was not OK, throw an error.
       throw Exception('Failed to load post');
@@ -593,27 +601,25 @@ class _PanelPageState extends State<PanelPage> {
   }
 
   Future<OffSearchResult> _fetchOffSearchResult() async {
-    //_barcode = '8412042502381'; // MORDARIZ 330 Ml
-    //_barcode = '8411620001155'; // El Caserio
-    final url = g.PANEL_SEARCH_PRODUCTS_BASE_URL + _barcode + g.PANEL_SEARCH_PRODUCTS_BASE_URL_END;
+    final url = g.PANEL_SEARCH_PRODUCTS_BASE_URL + _searchText + g.PANEL_SEARCH_PRODUCTS_BASE_URL_END;
     print(url);
 
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
       // If server returns an OK response, parse the JSON
+      return OffSearchResult.fromJson(json.decode(response.body));
       try {
-        print(response.body);
         return OffSearchResult.fromJson(json.decode(response.body));
       } catch (e) {
         setState(() {
           _errorMessage = "Error en obtención de datos: $e";
         });
-        throw Exception('Error en obtención de datos.');
+        throw e;
       }
     } else {
       // If that response was not OK, throw an error.
-      throw Exception('Failed to load post');
+      throw Exception('Failed to load from API');
     }
   }
 
