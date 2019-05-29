@@ -15,32 +15,30 @@ class FrontFr {
 
   FrontFr(
       {this.y2,
-        this.x1,
-        this.angle,
-        this.imgid,
-        this.whiteMagic,
-        this.x2,
-        this.normalize,
-        this.y1,
-        this.rev,
-        this.geometry,
-        this.sizes});
+      this.x1,
+      this.angle,
+      this.imgid,
+      this.whiteMagic,
+      this.x2,
+      this.normalize,
+      this.y1,
+      this.rev,
+      this.geometry,
+      this.sizes});
 
   FrontFr.fromJson(Map<String, dynamic> json) {
-    y2 = json.containsKey('y2') == true ? json['y2'] : null;
-    x1 = json.containsKey('x1') == true ? json['x1'] : null;
+    y2 = json.containsKey('y2') == true ? json['y2'].toString() : null;
+    x1 = json.containsKey('x1') == true ? json['x1'].toString() : null;
     angle = json.containsKey('angle') == true
-        ? json['angle'] is String
-        ? json['angle']
-        : json['angle'].toString()
+        ? json['angle'] is String ? json['angle'] : json['angle'].toString()
         : null;
-    imgid = json.containsKey('imgid') == true ? json['imgid'] : null;
-    whiteMagic = json.containsKey('white_magic') == true ? json['white_magic'] : null;
-    x2 = json.containsKey('x2') == true ? json['x2'] : null;
-    normalize = json.containsKey('normalize') == true ? json['normalize'] : null;
-    y1 = json.containsKey('y1') == true ? json['y1'] : null;
-    rev = json.containsKey('rev') == true ? json['rev'] : null;
-    geometry = json.containsKey('geometry') == true ? json['geometry'] : null;
+    imgid = json.containsKey('imgid') == true ? json['imgid'].toString() : null;
+    whiteMagic = json.containsKey('white_magic') == true ? json['white_magic'].toString() : null;
+    x2 = json.containsKey('x2') == true ? json['x2'].toString() : null;
+    normalize = json.containsKey('normalize') == true ? json['normalize'].toString() : null;
+    y1 = json.containsKey('y1') == true ? json['y1'].toString() : null;
+    rev = json.containsKey('rev') == true ? json['rev'].toString() : null;
+    geometry = json.containsKey('geometry') == true ? json['geometry'].toString() : null;
     sizes = json['sizes'] != null ? new Sizes.fromJson(json['sizes']) : null;
   }
 

@@ -14,14 +14,13 @@ class ListaProductosPage extends StatefulWidget {
 }
 
 class _ListaProductosPageState extends State<ListaProductosPage> {
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(g.APPBAR_LISTA_PRODUCTOS),
+        title: Text(g.APPBAR_LISTA_PRODUCTOS_ENCONTRADOS),
       ),
-        body: _showProductList(),
-        /*floatingActionButton: FloatingActionButton(
+      body: _showProductList(),
+      /*floatingActionButton: FloatingActionButton(
           onPressed: () {
             _showDialog(context);
           },
@@ -37,11 +36,19 @@ class _ListaProductosPageState extends State<ListaProductosPage> {
           shrinkWrap: true,
           itemCount: widget.offSearchResult.products.length,
           itemBuilder: (BuildContext context, int index) {
-            String productName = widget.offSearchResult.products.elementAt(index).productName != null ? widget.offSearchResult.products.elementAt(index).productName  : 'Nombre no encontrado';
-            /*String todoId = _todoList[index].key;
-            String subject = _todoList[index].subject;
-            bool completed = _todoList[index].completed;
-            String userId = _todoList[index].userId;*/
+            String productName =
+                widget.offSearchResult.products.elementAt(index).productName != null
+                    ? widget.offSearchResult.products.elementAt(index).productName
+                    : 'Nombre no registrado';
+            Widget imageWidget = (widget.offSearchResult.products.elementAt(index).imageFrontSmallUrl != null)
+            ? Image.network(widget.offSearchResult.products.elementAt(index).imageFrontSmallUrl)
+                : null;
+            String subtitleBrand = (widget.offSearchResult.products.elementAt(index).brands != null)
+                ? widget.offSearchResult.products.elementAt(index).brands
+                : '';
+            String subtitleQuantity = (widget.offSearchResult.products.elementAt(index).quantity != null)
+                ? widget.offSearchResult.products.elementAt(index).quantity
+                : '';
             return Dismissible(
               key: Key(productName),
               background: Container(color: Colors.red),
@@ -49,18 +56,20 @@ class _ListaProductosPageState extends State<ListaProductosPage> {
                 _deleteTodo(todoId, index);
               },*/
               child: ListTile(
+                leading: Container(
+                    width: 50.0,
+                    child: imageWidget),
                 title: Text(
                   productName,
                   style: TextStyle(fontSize: 20.0),
                 ),
+                subtitle: Text(subtitleBrand + ' - ' + subtitleQuantity),
                 onTap: () {
-
                   OffObject off = new OffObject();
                   off.product = widget.offSearchResult.products.elementAt(index);
 
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          ProductoPage(offObject: off)));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => ProductoPage(offObject: off)));
                 },
                 /*trailing: IconButton(
                     icon: (completed)
@@ -77,10 +86,12 @@ class _ListaProductosPageState extends State<ListaProductosPage> {
             );
           });
     } else {
-      return Center(child: Text("No se han encontrado productos con el texto introducido.",
+      return Center(
+          child: Text(
+        "No se han encontrado productos con el texto introducido.",
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 20.0),));
+        style: TextStyle(fontSize: 20.0),
+      ));
     }
   }
-
 }

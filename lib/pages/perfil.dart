@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:sticker_app/models/OpenFoodFacts/OffObject.dart';
 //import 'package:sticker_app/services/authentication.dart';
 import 'package:http/http.dart' as http;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'
-    as font_awesome_flutter;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart' as font_awesome_flutter;
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
 import 'package:sticker_app/pages/producto.dart';
@@ -60,15 +59,13 @@ class _PerfilPageState extends State<PerfilPage> {
   Widget _showUserStickersHeader() {
     return Container(
         padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(g.STICKERS_STICKERS_USUARIO),
-              Divider(
-                height: 15.0,
-                color: Colors.grey,
-              ),
-            ]));
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+          Text(g.STICKERS_STICKERS_USUARIO),
+          Divider(
+            height: 15.0,
+            color: Colors.grey,
+          ),
+        ]));
   }
 
   Widget _showUserStickers() {
@@ -101,10 +98,7 @@ class _PerfilPageState extends State<PerfilPage> {
   Widget _showUserImage() {
     return Padding(
         padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
-        child: Container(
-            width: 100,
-            height: 100,
-            child: Image.asset('assets/flutter-icon.png')));
+        child: Container(width: 100, height: 100, child: Image.asset('assets/flutter-icon.png')));
   }
 
   Widget _showUserInfo() {
@@ -136,9 +130,8 @@ class _PerfilPageState extends State<PerfilPage> {
                                 Icons.account_circle,
                                 color: Theme.of(context).accentColor,
                               )),
-                          validator: (value) => value.isEmpty
-                              ? 'El texto no pueder estar vacío'
-                              : null,
+                          validator: (value) =>
+                              value.isEmpty ? 'El texto no pueder estar vacío' : null,
                           onSaved: null, //(value) => _barcode = value,
                         )))),
           ],
@@ -177,11 +170,8 @@ class _PerfilPageState extends State<PerfilPage> {
     if (_errorMessage != null && _errorMessage.length > 0) {
       return new Text(
         _errorMessage,
-        style: TextStyle(
-            fontSize: 13.0,
-            color: Colors.red,
-            height: 1.0,
-            fontWeight: FontWeight.w300),
+        style:
+            TextStyle(fontSize: 13.0, color: Colors.red, height: 1.0, fontWeight: FontWeight.w300),
       );
     } else {
       return new Container(

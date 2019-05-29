@@ -4,8 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:sticker_app/models/OpenFoodFacts/OffObject.dart';
 //import 'package:sticker_app/services/authentication.dart';
 import 'package:http/http.dart' as http;
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'
-    as font_awesome_flutter;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart' as font_awesome_flutter;
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
 import 'package:sticker_app/models/OpenFoodFacts/OffSearchResult.dart';
@@ -42,12 +41,11 @@ class _PanelPageState extends State<PanelPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         /*appBar: new AppBar(title: new Text('Open Food Facts')),*/
-        /*floatingActionButton: FloatingActionButton.extended(
+        /*floatingActionButton: FloatingActionButton(
             onPressed: () {
-              _scanQR();
+              _scanQRAndGetProduct();
             },
-            icon: Icon(Icons.camera_alt),
-            label: Text("Scan")
+            child: Icon(font_awesome_flutter.FontAwesomeIcons.barcode)
         ),*/
         body: new Container(
             padding: const EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
@@ -72,15 +70,13 @@ class _PanelPageState extends State<PanelPage> {
   Widget _showHistoryHeader() {
     return Container(
         padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(g.PANEL_HISTORIAL),
-              Divider(
-                height: 5.0,
-                color: Colors.grey,
-              ),
-            ]));
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+          Text(g.PANEL_HISTORIAL),
+          Divider(
+            height: 5.0,
+            color: Colors.grey,
+          ),
+        ]));
   }
 
   Widget _showHistoryProducts() {
@@ -99,23 +95,23 @@ class _PanelPageState extends State<PanelPage> {
               width: 65.0,
               //color: Colors.orange,
               child: IconButton(
-                  iconSize: 65.0,
-                  //icon: Icon(Icons.image, color: Colors.purple),
-                  icon: Image.network(g.PANEL_HISTORY_PRODUCT_01_IMAGE),
-                  onPressed: () {
-                    _barcode = '3421557111051'; // Flakes
-                    _offObject = _fetchOffObject();
+                iconSize: 65.0,
+                //icon: Icon(Icons.image, color: Colors.purple),
+                icon: Image.network(g.PANEL_HISTORY_PRODUCT_01_IMAGE),
+                onPressed: () {
+                  _barcode = '3421557111051'; // Flakes
+                  _offObject = _fetchOffObject();
 
-                    _offObject.then((value) {
-                      setState(() {
-                        _offObjectCaptured = value;
-                      });
-
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              ProductoPage(offObject: _offObjectCaptured)));
+                  _offObject.then((value) {
+                    setState(() {
+                      _offObjectCaptured = value;
                     });
-                  },),
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
+                  });
+                },
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
@@ -135,10 +131,10 @@ class _PanelPageState extends State<PanelPage> {
                     });
 
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ProductoPage(offObject: _offObjectCaptured)));
+                        builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
                   });
-                },),
+                },
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
@@ -158,10 +154,10 @@ class _PanelPageState extends State<PanelPage> {
                     });
 
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ProductoPage(offObject: _offObjectCaptured)));
+                        builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
                   });
-                },),
+                },
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
@@ -181,10 +177,10 @@ class _PanelPageState extends State<PanelPage> {
                     });
 
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ProductoPage(offObject: _offObjectCaptured)));
+                        builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
                   });
-                },),
+                },
+              ),
             ),
           ],
         ),
@@ -195,15 +191,13 @@ class _PanelPageState extends State<PanelPage> {
   Widget _showSuggestedHeader() {
     return Container(
         padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(g.PANEL_SUGERENCIAS),
-              Divider(
-                height: 15.0,
-                color: Colors.grey,
-              )
-            ]));
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+          Text(g.PANEL_SUGERENCIAS),
+          Divider(
+            height: 15.0,
+            color: Colors.grey,
+          )
+        ]));
   }
 
   Widget _showSuggestedProducts() {
@@ -212,42 +206,103 @@ class _PanelPageState extends State<PanelPage> {
       child: Center(
           child: Container(
         //margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
-        //margin: EdgeInsets.symmetric(vertical: 10.0),
         height: 65.0,
-        child: /*Wrap*/
+        child: /*Wrap(*/
             ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
-              //color: Colors.purple,
+              //color: Colors.orange,
               child: IconButton(
-                  iconSize: 65.0,
-                  icon: Icon(Icons.image, color: Colors.purple)),
+                iconSize: 65.0,
+                //icon: Icon(Icons.image, color: Colors.purple),
+                icon: Image.network(g.PANEL_SUGERENCIAS_PRODUCT_01_IMAGE),
+                onPressed: () {
+                  _barcode = '8480000336170'; // Patatas sabor Boletus
+                  _offObject = _fetchOffObject();
+
+                  _offObject.then((value) {
+                    setState(() {
+                      _offObjectCaptured = value;
+                    });
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
+                  });
+                },
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
               //color: Colors.blue,
               child: IconButton(
-                  iconSize: 65.0, icon: Icon(Icons.image, color: Colors.blue)),
+                iconSize: 65.0,
+                //icon: Icon(Icons.image, color: Colors.blue),
+                icon: Image.network(g.PANEL_SUGERENCIAS_PRODUCT_02_IMAGE),
+                onPressed: () {
+                  _barcode = '8431876261035'; // Arándanos
+                  _offObject = _fetchOffObject();
+
+                  _offObject.then((value) {
+                    setState(() {
+                      _offObjectCaptured = value;
+                    });
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
+                  });
+                },
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
               //color: Colors.green,
               child: IconButton(
-                  iconSize: 65.0, icon: Icon(Icons.image, color: Colors.green)),
+                iconSize: 65.0,
+                //icon: Icon(Icons.image, color: Colors.green),
+                icon: Image.network(g.PANEL_SUGERENCIAS_PRODUCT_03_IMAGE),
+                onPressed: () {
+                  _barcode = '8410707000197'; // Juver Disfruta
+                  _offObject = _fetchOffObject();
+
+                  _offObject.then((value) {
+                    setState(() {
+                      _offObjectCaptured = value;
+                    });
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
+                  });
+                },
+              ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
               width: 65.0,
               //color: Colors.yellow,
               child: IconButton(
-                  iconSize: 65.0,
-                  icon: Icon(Icons.image, color: Colors.yellow)),
-            )
+                iconSize: 65.0,
+                //icon: Icon(Icons.image, color: Colors.yellow),
+                icon: Image.network(g.PANEL_SUGERENCIAS_PRODUCT_04_IMAGE),
+                onPressed: () {
+                  _barcode = '8480010008173'; // Galletas María integrales
+                  _offObject = _fetchOffObject();
+
+                  _offObject.then((value) {
+                    setState(() {
+                      _offObjectCaptured = value;
+                    });
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
+                  });
+                },
+              ),
+            ),
           ],
         ),
       )),
@@ -257,15 +312,13 @@ class _PanelPageState extends State<PanelPage> {
   Widget _showStickersHeader() {
     return Container(
         padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(g.PANEL_STICKERS),
-              Divider(
-                height: 15.0,
-                color: Colors.grey,
-              ),
-            ]));
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+          Text(g.PANEL_STICKERS),
+          Divider(
+            height: 15.0,
+            color: Colors.grey,
+          ),
+        ]));
   }
 
   Widget _showUserStickers() {
@@ -399,8 +452,7 @@ class _PanelPageState extends State<PanelPage> {
                         color: Colors.grey,
                       )*/
                   ),
-                  validator: (value) =>
-                      value.isEmpty ? 'El texto no pueder estar vacío' : null,
+                  validator: (value) => value.isEmpty ? 'El texto no pueder estar vacío' : null,
                   onSaved: (value) => _searchText = value,
                 )),
             Container(
@@ -411,19 +463,22 @@ class _PanelPageState extends State<PanelPage> {
                       color: Colors.green,
                     ),
                     onPressed: () {
+                      _searchText = null;
                       var res = _validateAndSearchProducts();
-                      //var res = _validateAndGetProduct();
-                      res.then((value) {
-                        _offSearchResult.then((value) {
-                          setState(() {
-                            _offSearchResultCaptured = value;
-                          });
+                        if(_searchText != null) {
+                          res.then((value) {
+                            _offSearchResult.then((value) {
+                              setState(() {
+                                _offSearchResultCaptured = value;
+                              });
 
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  ListaProductosPage(offSearchResult: _offSearchResultCaptured)));
-                        });
-                      });
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      ListaProductosPage(
+                                          offSearchResult: _offSearchResultCaptured)));
+                            });
+                          });
+                        }
                     })),
             Container(
                 width: 50.0,
@@ -443,8 +498,7 @@ class _PanelPageState extends State<PanelPage> {
                             });
 
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    ProductoPage(offObject: _offObjectCaptured)));
+                                builder: (context) => ProductoPage(offObject: _offObjectCaptured)));
                           });
                         }
                       });
@@ -469,7 +523,6 @@ class _PanelPageState extends State<PanelPage> {
       });
 
       return 'OK';
-
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
@@ -601,7 +654,8 @@ class _PanelPageState extends State<PanelPage> {
   }
 
   Future<OffSearchResult> _fetchOffSearchResult() async {
-    final url = g.PANEL_SEARCH_PRODUCTS_BASE_URL + _searchText + g.PANEL_SEARCH_PRODUCTS_BASE_URL_END;
+    final url =
+        g.PANEL_SEARCH_PRODUCTS_BASE_URL + _searchText + g.PANEL_SEARCH_PRODUCTS_BASE_URL_END;
     print(url);
 
     final response = await http.get(url);
@@ -630,10 +684,7 @@ class _PanelPageState extends State<PanelPage> {
           Text(
             _errorMessage,
             style: TextStyle(
-                fontSize: 13.0,
-                color: Colors.red,
-                height: 1.0,
-                fontWeight: FontWeight.w300),
+                fontSize: 13.0, color: Colors.red, height: 1.0, fontWeight: FontWeight.w300),
           )
         ],
       );
@@ -643,5 +694,4 @@ class _PanelPageState extends State<PanelPage> {
       );
     }
   }
-
 }
