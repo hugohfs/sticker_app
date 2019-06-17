@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:sticker_app/globals/globals.dart' as g;
-import 'package:sticker_app/pages/panel.dart';
-import 'package:sticker_app/pages/perfil.dart';
-import 'package:sticker_app/pages/stickers.dart';
+import 'package:sticker_app/pages/root_page.dart';
+import 'package:sticker_app/services/authentication.dart';
 
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Sticker App',
+      debugShowCheckedModeBanner: false,
+      theme: new ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: new RootPage(auth: new Auth()),
+      routes: <String, WidgetBuilder>{
+        '/RootPage': (BuildContext context) => RootPage(auth: new Auth()),
+      },
+      //home: new HomePage()
+    );
+  }
+}
+
+/*class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -134,4 +151,4 @@ class _MyHomePageState extends State<MyHomePage> {
         )
     );
   }
-}
+}*/
