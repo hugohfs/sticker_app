@@ -40,6 +40,21 @@ class Auth implements BaseAuth {
 
     final FirebaseUser user = await _firebaseAuth.signInWithCredential(credential);
     print("signed in " + user.displayName);
+
+    assert(user.email != null);
+    assert(user.displayName != null);
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
+
+    final FirebaseUser currentUser = await _firebaseAuth.currentUser();
+    assert(user.uid == currentUser.uid);
+
+    //return 'signInWithGoogle succeeded: $user';
+    //print('signInWithGoogle succeeded: $user');
+
+    g.userInfoDetails =  new UserInfoDetails(
+        user.providerId, user.displayName != null ? user.displayName : user.email, user.email, user.photoUrl != null ? user.photoUrl : g.URL_LOGO_POR_DEFECTO, user.uid);
+
     return user.uid;
   }
 

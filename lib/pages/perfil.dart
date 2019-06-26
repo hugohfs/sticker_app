@@ -25,8 +25,10 @@ class _PerfilPageState extends State<PerfilPage> {
   String _stickerBuscar;
   final _formKey = new GlobalKey<FormState>();
   String _errorMessage;
+  String _nombre;
+  bool _isEnabled = false;
 
-  final _textEditingController = TextEditingController();
+  final _textEditingController = TextEditingController(text: g.userInfoDetails.displayName);
 
   @override
   Widget build(BuildContext context) {
@@ -117,23 +119,33 @@ class _PerfilPageState extends State<PerfilPage> {
             Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                 child: Center(
-                    child: Container(
-                        width: 200.0,
-                        child: TextFormField(
-                          controller: _textEditingController,
-                          maxLines: 1,
-                          keyboardType: TextInputType.emailAddress,
-                          autofocus: false,
-                          decoration: new InputDecoration(
-                              hintText: 'Nombre del usuario',
-                              icon: new Icon(
-                                Icons.account_circle,
-                                color: Theme.of(context).accentColor,
-                              )),
-                          validator: (value) =>
-                              value.isEmpty ? 'El texto no pueder estar vacío' : null,
-                          onSaved: null, //(value) => _barcode = value,
-                        )))),
+                    child: Wrap(
+                      children: <Widget>[
+                        Container(
+                          width: 200.0,
+                          child: TextFormField(
+                            enabled: _isEnabled,
+                            controller: _textEditingController,
+                            maxLines: 1,
+                            keyboardType: TextInputType.emailAddress,
+                            autofocus: false,
+                            decoration: new InputDecoration(
+                                labelText: 'Nombre',
+                                hintText: 'Nombre de usuario',
+                                icon: new Icon(
+                                  Icons.account_circle,
+                                  color: Theme.of(context).accentColor,
+                                )),
+                            validator: (value) =>
+                                value.isEmpty ? 'El texto no pueder estar vacío' : null,
+                            onSaved: null, //(value) => _barcode = value,
+                          )
+                        ),
+                        IconButton(
+                          onPressed: () => setState(() => _isEnabled = !_isEnabled),
+                          icon: new Icon(_isEnabled ? Icons.save : Icons.edit),
+                        ),]
+                    ))),
           ],
         ));
   }
