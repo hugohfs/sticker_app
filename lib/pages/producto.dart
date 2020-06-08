@@ -1,7 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:sticker_app/models/OpenFoodFacts/OffObject.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sticker_app/models/productoHistorico.dart';
 
 class ProductoPage extends StatefulWidget {
   ProductoPage({Key key, this.offObject}) : super(key: key);
@@ -15,6 +17,20 @@ class ProductoPage extends StatefulWidget {
 class _ProductoPageState extends State<ProductoPage> {
   String _textMessage;
   String _errorMessage;
+
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
+  DatabaseReference _historicoProductosRef = null;
+
+  void initState() {
+    super.initState();
+
+    _historicoProductosRef = _database.reference()
+        .child("stickerApp/usuarios/" + g.userInfoDetails.uid + "/historicoProductos");
+
+    //Save id in product history
+    print(widget.offObject.product.sId);
+    _historicoProductosRef.push().set(new ProductoHistorico(widget.offObject.product.sId, DateTime.now()).toJson());
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(

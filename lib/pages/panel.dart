@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
@@ -6,8 +9,11 @@ import 'package:sticker_app/models/OpenFoodFacts/OffObject.dart';
 import 'package:http/http.dart' as http;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart' as font_awesome_flutter;
 import 'package:barcode_scan/barcode_scan.dart';
+//import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
 import 'package:sticker_app/models/OpenFoodFacts/OffSearchResult.dart';
+import 'package:sticker_app/models/productoHistorico.dart';
+import 'package:sticker_app/models/usuario.dart';
 import 'package:sticker_app/pages/lista_productos.dart';
 import 'package:sticker_app/pages/producto.dart';
 
@@ -37,6 +43,108 @@ class _PanelPageState extends State<PanelPage> {
 
   final _textEditingController = TextEditingController();
 
+  final _flashOnController = TextEditingController(text: "Flash on");
+  final _flashOffController = TextEditingController(text: "Flash off");
+  final _cancelController = TextEditingController(text: "Cancel");
+
+  var _aspectTolerance = 0.00;
+  var _numberOfCameras = 0;
+  var _selectedCamera = -1;
+  var _useAutoFocus = true;
+  var _autoEnableFlash = false;
+
+  static final _possibleFormats = BarcodeFormat.values.toList()
+    ..removeWhere((e) => e == BarcodeFormat.unknown);
+
+  List<BarcodeFormat> selectedFormats = [..._possibleFormats];
+
+  //firebase
+  List<Usuario> _usuarios = List();
+  List<ProductoHistorico> _historicoProductos = List();
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
+  StreamSubscription<Event> _onUsuarioAddedSubscription;
+  StreamSubscription<Event> _onUsuarioChangedSubscription;
+  StreamSubscription<Event> _onHistoricoProductosUsuarioAddedSubscription;
+  StreamSubscription<Event> _onHistoricoProductosUsuarioChangedSubscription;
+  Query _usuariosQuery;
+  Query _historicoProductosUsuarioQuery;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _usuarios = List();
+    _historicoProductos = List();
+
+    _usuariosQuery = _database
+        .reference()
+        .child("stickerApp/usuarios");
+
+    _historicoProductosUsuarioQuery = _database
+        .reference()
+        .child("stickerApp/usuarios/" + g.userInfoDetails.uid + "/historicoProductos");
+
+    _onUsuarioAddedSubscription =
+        _usuariosQuery.onChildAdded.listen(_onUsuarioEntryAdded);
+    _onUsuarioChangedSubscription =
+        _usuariosQuery.onChildChanged.listen(_onUsuarioEntryChanged);
+
+    _onHistoricoProductosUsuarioAddedSubscription =
+        _historicoProductosUsuarioQuery.onChildAdded.listen(_onHistoricoProductosUsuarioEntryAdded);
+    _onHistoricoProductosUsuarioChangedSubscription =
+        _historicoProductosUsuarioQuery.onChildChanged.listen(_onHistoricoProductosUsuarioEntryChanged);
+  }
+
+  @override
+  void dispose() {
+    _onUsuarioAddedSubscription.cancel();
+    _onUsuarioChangedSubscription.cancel();
+    _onHistoricoProductosUsuarioAddedSubscription.cancel();
+    _onHistoricoProductosUsuarioChangedSubscription.cancel();
+    super.dispose();
+  }
+
+  _onUsuarioEntryAdded(Event event) {
+    setState(() {
+      Usuario u = Usuario.fromSnapshot(event.snapshot);
+      _usuarios.add(u);
+    });
+  }
+
+  _onUsuarioEntryChanged(Event event) {
+    var old = _usuarios.singleWhere((entry) {
+      return entry.key == event.snapshot.key;
+    });
+
+    Usuario u = Usuario.fromSnapshot(event.snapshot);
+    setState(() {
+      _usuarios[_usuarios.indexOf(old)] = u;
+    });
+  }
+
+  _onHistoricoProductosUsuarioEntryAdded(Event event) {
+    setState(() {
+      ProductoHistorico p = ProductoHistorico.fromSnapshot(event.snapshot);
+      _historicoProductos.add(p);
+      _historicoProductos.sort((a,b) {
+        var adate = a.fecha;
+        var bdate = b.fecha;
+        return -adate.compareTo(bdate);
+      });
+    });
+  }
+
+  _onHistoricoProductosUsuarioEntryChanged(Event event) {
+    var old = _historicoProductos.singleWhere((entry) {
+      return entry.key == event.snapshot.key;
+    });
+
+    ProductoHistorico p = ProductoHistorico.fromSnapshot(event.snapshot);
+    setState(() {
+      _historicoProductos[_historicoProductos.indexOf(old)] = p;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -62,6 +170,7 @@ class _PanelPageState extends State<PanelPage> {
                   _showSuggestedProducts(),
                   _showStickersHeader(),
                   _showUserStickers(),
+                  _showHistoricoList(context),
                 ],
               ),
             )));
@@ -509,14 +618,33 @@ class _PanelPageState extends State<PanelPage> {
 
   Future<String> _scanQRAndGetProduct() async {
     try {
-      String qrResult = await BarcodeScanner.scan();
+      var options = ScanOptions(
+        strings: {
+          "cancel": _cancelController.text,
+          "flash_on": _flashOnController.text,
+          "flash_off": _flashOffController.text,
+        },
+        restrictFormat: selectedFormats,
+        useCamera: _selectedCamera,
+        autoEnableFlash: _autoEnableFlash,
+        android: AndroidOptions(
+          aspectTolerance: _aspectTolerance,
+          useAutoFocus: _useAutoFocus,
+        ),
+      );
+
+      var qrResult = await BarcodeScanner.scan(options: options);
+
+      //var qrResult = await FlutterBarcodeScanner.scanBarcode("#FF0000", "Cancelar", true, ScanMode.BARCODE);
+      print("lala");
+      print(qrResult);
       /*setState(() {
         _textEditingController.text = qrResult;
       });*/
 
       //_getProduct();
       setState(() {
-        _barcode = qrResult;
+        _barcode = qrResult.toString();
         _errorMessage = "";
         _offObject = _fetchOffObject();
         _textMessage = null;
@@ -524,7 +652,7 @@ class _PanelPageState extends State<PanelPage> {
 
       return 'OK';
     } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
+      /*if (e.code == BarcodeScanner.cameraAccessDenied) {
         setState(() {
           //_textEditingController.text = "Camera permission was denied";
           _errorMessage = "Camera permission was denied";
@@ -534,7 +662,11 @@ class _PanelPageState extends State<PanelPage> {
           //_textEditingController.text = "Unknown error $e";
           _errorMessage = "Unknown error $e";
         });
-      }
+      }*/
+      setState(() {
+        //_textEditingController.text = "Unknown error $e";
+        _errorMessage = "Unknown error $e";
+      });
     } on FormatException {
       setState(() {
         //_textEditingController.text =  "You pressed the back button before scanning anything";
@@ -694,4 +826,35 @@ class _PanelPageState extends State<PanelPage> {
       );
     }
   }
+
+  Widget _showHistoricoList(BuildContext context) {
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: _historicoProductos.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(
+              _historicoProductos[index].productoId ?? '',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            subtitle: _historicoProductos[index].fecha != null
+                ? Text(_historicoProductos[index].fecha.toString())
+                : Text(''),
+            /*onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PreguntaPage(
+                        pregunta: _usuarios[index],
+                        auth: widget.auth,
+                        userId: widget.userId,
+                        onSignedOut: widget.onSignedOut))),*/
+            /*trailing: IconButton(
+                icon: Icon(Icons.delete, color: Colors.grey, size: 20.0),
+                onPressed: () {
+                  eliminarPregunta(index);
+                }),*/
+          );
+        });
+  }
+  
 }

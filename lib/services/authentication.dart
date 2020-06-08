@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
@@ -38,7 +39,7 @@ class Auth implements BaseAuth {
       idToken: googleAuth.idToken,
     );
 
-    final FirebaseUser user = await _firebaseAuth.signInWithCredential(credential);
+    final FirebaseUser user = (await _firebaseAuth.signInWithCredential(credential)).user;
     print("signed in " + user.displayName);
 
     assert(user.email != null);
@@ -87,8 +88,8 @@ class Auth implements BaseAuth {
   }*/
 
   Future<String> signIn(String email, String password) async {
-    FirebaseUser user = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+    FirebaseUser user = (await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password)).user;
 
     g.userInfoDetails =  new UserInfoDetails(
         user.providerId, user.displayName != null ? user.displayName : user.email, user.email, user.photoUrl != null ? user.photoUrl : g.URL_LOGO_POR_DEFECTO, user.uid);
@@ -97,8 +98,8 @@ class Auth implements BaseAuth {
   }
 
   Future<String> signUp(String email, String password) async {
-    FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
+    FirebaseUser user = (await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password)).user;
     return user.uid;
   }
 

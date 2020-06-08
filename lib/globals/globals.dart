@@ -1,5 +1,6 @@
 library hfs_flutter_app.globals;
 
+import 'package:intl/intl.dart';
 import 'package:sticker_app/models/user_info_details.dart';
 
 UserInfoDetails userInfoDetails = new UserInfoDetails('', '', '', '', '');
@@ -54,3 +55,5 @@ final String PRODUCTO_TAB_COMPOSICION = "Composición";
 final String PRODUCTO_TAB_INFORMACION = "Información";
 
 final String APPBAR_LISTA_PRODUCTOS_ENCONTRADOS = "Lista de productos encontrados";
+
+final DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");

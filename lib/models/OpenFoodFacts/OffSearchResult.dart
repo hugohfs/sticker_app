@@ -5,19 +5,19 @@ class OffSearchResult {
   List<Product> products;
   String page;
   int skip;
-  int count;
+  String count;
 
   OffSearchResult({this.pageSize, this.products, this.page, this.skip, this.count});
 
   OffSearchResult.fromJson(Map<String, dynamic> json) {
-    pageSize = json['page_size'];
+    pageSize = json['page_size'].toString();
     if (json['products'] != null) {
       products = new List<Product>();
       json['products'].forEach((v) { products.add(new Product.fromJson(v)); });
     }
-    page = json['page'];
+    page = json['page'].toString();
     skip = json['skip'];
-    count = json['count'];
+    count = json['count'].toString();
   }
 
   Map<String, dynamic> toJson() {

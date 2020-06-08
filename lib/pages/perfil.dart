@@ -5,7 +5,7 @@ import 'package:sticker_app/models/OpenFoodFacts/OffObject.dart';
 //import 'package:sticker_app/services/authentication.dart';
 import 'package:http/http.dart' as http;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart' as font_awesome_flutter;
-import 'package:barcode_scan/barcode_scan.dart';
+//import 'package:barcode_scan/barcode_scan.dart';
 import 'package:sticker_app/globals/globals.dart' as g;
 import 'package:sticker_app/pages/producto.dart';
 
